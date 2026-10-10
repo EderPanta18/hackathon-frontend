@@ -1,118 +1,51 @@
-# -----------------------------------------------------------------------------
-# Git history
-# -----------------------------------------------------------------------------
-
-# Máximo de commits analizados por archivo.
-# Adaptar sólo si el historial del proyecto lo requiere.
 commit_limit: 1000
-
-# Mantener la continuidad histórica de archivos renombrados.
 follow_renames: true
-
-# -----------------------------------------------------------------------------
-# Embeddings
-# -----------------------------------------------------------------------------
-
-# No utilizar embeddings externos.
 embedder: mock
-
-# -----------------------------------------------------------------------------
-# Exclusions
-# -----------------------------------------------------------------------------
-
-# Patrones adicionales que no deben formar parte del índice.
-# Añadir o retirar entradas únicamente cuando el proyecto lo requiera.
 exclude_patterns:
-    - "AGENTS.md"
-    - ".mcp.json"
-    - ".context/STATE.md"
-    - ".context/SESSION_COUNTER"
-    - ".context/sessions/**"
-    - ".context/specs/**"
-    - ".specify/**"
-    - ".agents/**"
-    - ".codex/**"
-    - ".opencode/**"
-    - ".serena/**"
-    - ".development/**"
-
-# -----------------------------------------------------------------------------
-# Generated instruction files
-# -----------------------------------------------------------------------------
-
-# No generar ni mantener archivos de instrucciones automáticamente.
+- AGENTS.md
+- .mcp.json
+- .context/STATE.md
+- .context/SESSION_COUNTER
+- .context/sessions/**
+- .context/specs/**
+- .specify/**
+- .agents/**
+- .codex/**
+- .opencode/**
+- .serena/**
+- .development/**
 editor_files:
-    claude_md: false
-    agents_md: false
-
-# -----------------------------------------------------------------------------
-# Decisions
-# -----------------------------------------------------------------------------
-
-# Mantener la inteligencia de decisiones habilitada sin permitir
-# llamadas a modelos durante su extracción.
+  claude_md: false
+  agents_md: false
 decisions:
-    enabled: true
-    llm: false
-
-    sources:
-        # Marcadores explícitos WHY: / DECISION:.
-        inline_marker: true
-
-        # Archivos de decisiones arquitectónicas.
-        adr: true
-
-        # Estas fuentes requieren extracción mediante modelo.
-        git_archaeology: false
-        pr: false
-        comment: false
-        session_discovery: false
-
-        # No extraer decisiones desde transcripciones de sesiones.
-        session: false
-
-        # No convertir convenciones detectadas en decisiones.
-        conventions: false
-
-    # Un agente no puede otorgar autoridad a una decisión.
-    agent_acceptance: false
-
-    # No instalar prompts/hooks para capturar decisiones tras commits.
-    capture_prompt: false
-
-# -----------------------------------------------------------------------------
-# Distill
-# -----------------------------------------------------------------------------
-
-# Desactivar la transformación automática de outputs.
+  enabled: true
+  llm: false
+  sources:
+    inline_marker: true
+    adr: true
+    git_archaeology: false
+    pr: false
+    comment: false
+    session_discovery: false
+    session: false
+    conventions: false
+  agent_acceptance: false
+  capture_prompt: false
 distill:
+  enabled: false
+  commands:
     enabled: false
-
-    commands:
-        enabled: false
-
-# -----------------------------------------------------------------------------
-# Hooks
-# -----------------------------------------------------------------------------
-
-# No intervenir automáticamente en lecturas, búsquedas o cobertura.
 hooks:
-    read_skeleton: false
-    read_reread: false
-    search_digest: false
-    coverage_reingest: false
-
-# -----------------------------------------------------------------------------
-# MCP
-# -----------------------------------------------------------------------------
-
-# Allowlist explícita de capacidades expuestas por el servidor MCP.
+  read_skeleton: false
+  read_reread: false
+  search_digest: false
+  coverage_reingest: false
 mcp:
-    tools:
-        - get_overview
-        - get_context
-        - get_risk
-        - get_change_risk
-        - get_why
-        - get_health
-        - get_dead_code
+  tools:
+  - get_overview
+  - get_context
+  - get_risk
+  - get_change_risk
+  - get_why
+  - get_health
+  - get_dead_code

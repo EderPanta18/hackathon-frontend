@@ -1,95 +1,44 @@
-<!--
-Repository Agent Contract Template
+# hackathon-frontend — Development Contract
 
-Materialization mode: ADAPT
-Target: AGENTS.md
-Ownership: HUMAN_MANAGED
-Git: YES
--->
-
-# [PROJECT_NAME] Repository Agent Contract
-
-<!-- Router operativo breve. La arquitectura y las reglas de dominio pertenecen a la Constitution. -->
+<!-- HUMAN_MANAGED · Contrato operativo para desarrolladores y agentes. -->
 
 ## Start
 
-- Leer `[WORKING_STATE_PATH]` una sola vez y contrastarlo con Git y el workspace real.
-- Recuperar sólo el contexto necesario; no precargar historical sessions ni docs.
-- Preservar cambios existentes sin asumir autoría.
+- Revisar Git, cambios existentes, estructura y scripts de `package.json`; no sobrescribir trabajo ajeno.
+- Si existe `.context/STATE.md`, leerlo una vez y contrastarlo con el workspace. Recuperar sólo contexto relevante, no sesiones ni documentación completas.
+- Consultar las secciones pertinentes de `.specify/memory/constitution.md` ante cambios de arquitectura, datos, seguridad o reglas del producto.
 
-## Clarify & Plan
+## Scope & Implementation
 
-- No inventar requisitos, contracts ni acceptance criteria; preguntar sólo por decisiones materiales no verificables.
-- Usar `[PLANNING_CAPABILITY]` para trabajo no trivial; evitar planning ceremonial en cambios pequeños.
-- Dividir goals/plans en tasks delimitadas y verificables; no crear un `PLAN.md` paralelo por defecto.
+- Implementar requisitos confirmados; no inventar APIs, datos geográficos de Piura ni criterios de aceptación. Preguntar sólo ante bloqueos materiales.
+- Resolver cambios pequeños directamente; descomponer trabajo no trivial en tasks verificables. Reutilizar primero y evitar abstracciones, dependencias y refactors ajenos a la task.
+- Diferenciar comportamiento real, mock y pendiente. No presentar rutas, sincronización offline, entregas ni exportaciones como operativas sin verificarlo.
 
-## Retrieve
+## Tools & Skills — On Demand
 
-Seleccionar la capacidad mínima y acotar el search scope:
+- **No hay herramientas especiales obligatorias.** Detectar disponibilidad antes de invocar; si falta una capacidad, usar su fallback y continuar. No instalar, actualizar ni configurar herramientas por iniciativa propia. No recorrer todas las herramientas al inicio.
+- **Texto y rutas:** `rg` (ripgrep); fallback: búsqueda del editor o `Select-String` / `Get-ChildItem` en PowerShell.
+- **Patrones sintácticos:** `sg` (ast-grep), si está disponible; fallback: `rg` e inspección del código.
+- **Símbolos, referencias e implementaciones:** Serena; fallback: LSP del editor o `rg`. Limitar la consulta a los archivos/símbolos pertinentes.
+- **Arquitectura, relaciones e impacto:** Repowise; fallback: imports, estructura y código verificado. No usarlo para búsquedas literales.
+- **Documentación de dependencias externas:** Context7 / skill `find-docs`; fallback: documentación oficial accesible. Para código propio, usar búsquedas locales.
+- **Specs y planificación:** Spec Kit (`speckit-*`) para trabajo no trivial; fallback: tasks breves y verificables sin artefactos ceremoniales.
+- **Disciplina de implementación:** Ponytail si está activo; fallback: cambio mínimo y revisión de diff.
+- **UI:** utilizar, según la tarea y disponibilidad, `frontend-design`, `project-ui`, `web-design-guidelines` y skills `antislop-*`; fallback: convenciones y componentes existentes del repositorio.
+- **Verificación:** skill `project-verification`; fallback: scripts reales del proyecto y comprobaciones manuales explícitas.
+- **Continuidad:** skill `session-lifecycle`; fallback: actualizar `.context/STATE.md` si existe.
+- Leer `SKILL.md` únicamente al necesitar una skill. Si no existe o falla, no bloquear la task; señalar la limitación sólo si afecta el resultado.
 
-```text
-texto exacto / rutas             → [LITERAL_SEARCH_CAPABILITY]
-patrón sintáctico                → [STRUCTURAL_CODE_CAPABILITY]
-símbolos / referencias           → [SEMANTIC_CODE_CAPABILITY]
-arquitectura / dependencias      → [REPOSITORY_INTELLIGENCE_CAPABILITY]
-documentación externa           → [EXTERNAL_DOCS_CAPABILITY]
-```
+## Verify & Deliver
 
-- Buscar antes de leer archivos completos; contrastar índices y docs con el código vigente.
-
-## Implement & Bugs
-
-- Respetar `[PROJECT_GOVERNANCE_SOURCE]` y los contracts vigentes.
-- Resolver la causa con el cambio mínimo correcto; reutilizar antes de añadir abstractions o dependencies.
-- Aplicar `[IMPLEMENTATION_DISCIPLINE]` ante riesgo de sobreingeniería; revisar el diff.
-- Reproducir bugs cuando sea viable; ante failures repetidos, reevaluar el enfoque sin silenciar errores.
-- No ejecutar acciones destructivas o con efectos externos reales sin autorización explícita.
-
-## Delegate
-
-- Delegar sólo tareas independientes cuando el beneficio supere el coste de coordinación.
-- Separar exploración (read-only), implementación (edición acotada) y review (read-only) según los permisos efectivos del runtime.
-- Dar objetivo, scope, permisos, condición de finalización y retorno breve con evidencia.
-- Evitar edición simultánea de los mismos archivos o contracts compartidos.
-- El agente principal conserva integración, verification y commits; los subagents no hacen commits.
-
-## Verify & Commit
-
-- Usar `[PROJECT_VERIFICATION_SKILL]`; ejecutar checks específicos primero y ampliar según riesgo.
-- Un check no ejecutado no cuenta como aprobado; repetirlo si cambiaron sus inputs relevantes.
-- **Cada task completada y verificada genera un commit de su propio scope; no esperar al cierre del goal/plan.**
-- Revisar diff y staging; no incluir trabajo ajeno ni usar staging ciego.
-- Si la task no está completa o verificada, informar el bloqueo en vez de forzar un commit de cierre.
-
-## Continuity
-
-- Usar `[SESSION_CONTINUITY_SKILL]` en checkpoints, handoffs, compaction relevante y cierres.
-- El transcript no es memoria durable; mantener working state mínimo y consultar historial bajo demanda.
-- Un checkpoint puede actualizar continuidad sin producir commit.
+- Ejecutar checks relevantes al cambio y ampliar según riesgo. No inventar scripts ni declarar aprobadas verificaciones no ejecutadas.
+- En cambios logísticos críticos, revisar según corresponda inventario, duplicados, estados de entrega, rutas bloqueadas/desconocidas y exportaciones Excel/PDF; en UI, comprobar el uso móvil.
+- Revisar diff y staging; realizar un commit por task completada y verificada si hay permisos. Nunca incluir cambios ajenos ni forzar un cierre incompleto.
+- No desplegar, destruir datos ni modificar servicios externos reales sin autorización.
+- Entregar resumen de cambios, evidencia de checks, limitaciones y siguiente acción. Si se mantiene `.context/STATE.md`, conservar un solo `Now` y máximo 4 KiB.
 
 ## Ownership & Authority
 
-- `[PROTECTED_INFRASTRUCTURE_PATHS]` son `HUMAN_MANAGED`: no editarlos sin solicitud humana explícita.
-- Los cambios previos en rutas protegidas no amplían el scope autorizado.
-- El estado de trabajo autorizado es `AGENT_MANAGED`; índices, caches y outputs regenerables son `TOOL_MANAGED`.
-- `[PROJECT_GOVERNANCE_SOURCE]` establece normas; Git y código verificado establecen hechos. No inventar reglas si la fuente aún no existe.
-
-## Done
-
-- Cerrar sólo con scope satisfecho, verification válida, diff revisado y commit acotado.
-- Informar qué cambió, qué checks se ejecutaron y qué quedó pendiente.
-
-<!-- antislop:start -->
-## antislop
-For UI, copy, people, mobile layout, or code comments work, read these installed skill files directly (use these paths even if a same-named global skill exists):
-- Core filter, always on: `antislop`: `.codex/skills/antislop/SKILL.md`
-- UI / visual: `antislop-ui`: `.codex/skills/antislop-ui/SKILL.md`
-- Copy & text: `antislop-copywriting`: `.codex/skills/antislop-copywriting/SKILL.md`
-- People: `antislop-human`: `.codex/skills/antislop-human/SKILL.md`
-- Mobile / responsive: `antislop-layoutmobile`: `.codex/skills/antislop-layoutmobile/SKILL.md`
-- Code comments: `antislop-code`: `.codex/skills/antislop-code/SKILL.md`
-Before starting, follow the core's "Two Usage Modes" section in strict order: explicit session instruction first, then global preference, then ask. A session instruction always wins. For a resolved mode, say `antislop active: <mode> (session override).` or `antislop active: <mode> (global preference).` once before presenting findings or making edits, using the actual mode and source. Acknowledging the user's request without naming the source does not replace this notice.
-Only an explicit choice of antislop during or after selects a session mode. A request to review, audit, or avoid file edits does not select a mode; read the global preference in that case. Another skill's mode does not select antislop's mode.
-If the mode is unresolved, ask during/after and end the response; wait for the answer before any UI review, planning, or concept. For read-only tasks, put the active-mode notice only at the start of the final answer, never in progress messages. For editing tasks, announce before the first edit and omit it from the final answer.
-To update antislop later: `npx antislop-ai --update`, or run `npx antislop-ai` and pick Overwrite them.
-<!-- antislop:end -->
+- La Constitution gobierna invariantes; Git y el código verificado describen la realidad. Las specs desarrollan el alcance de cada task.
+- `AGENTS.md`, `.specify/`, `.agents/skills/`, `.codex/`, `.opencode/`, `.serena/`, `.repowise/` y configuraciones de tooling son `HUMAN_MANAGED`: no editar sin autorización explícita.
+- Los archivos de trabajo de `.context/` son `AGENT_MANAGED` dentro del scope autorizado; cachés, índices y logs son `TOOL_MANAGED`.

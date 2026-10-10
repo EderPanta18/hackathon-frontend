@@ -1,0 +1,22 @@
+# Ignora únicamente estado local o específico de la máquina generado
+# por Spec Kit.
+#
+# La infraestructura compartida y reproducible de Spec Kit debe permanecer
+# versionada.
+
+# -----------------------------------------------------------------------------
+# Active feature state
+# -----------------------------------------------------------------------------
+
+# Puntero local a la feature actualmente activa.
+# Se reescribe al cambiar de feature y pertenece al checkout local.
+feature.json
+
+
+# -----------------------------------------------------------------------------
+# Machine-local extension configuration
+# -----------------------------------------------------------------------------
+
+# Overrides locales de extensiones.
+# No deben compartirse entre máquinas.
+extensions/*/local-config.yml
