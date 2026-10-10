@@ -34,6 +34,7 @@ Pin/lista muestran el mismo detalle. Filtro actualiza pines/lista/indicadores; s
 | Fallo completo de estilo/worker/WebGL | «Mapa base no disponible», reintento y contenido textual |
 | Ruta ilustrativa | Etiqueta permanente; bloqueo/desconocido no implica seguridad |
 | Offline DEMO | Aviso manual, acciones locales siguen; sin cortar red ni guardar cola |
+| Cola pendiente visual | Maqueta de una confirmación pendiente, identificada como ejemplo; no contiene operaciones, no altera stock/recepción y no se procesa al volver online |
 | Vuelta a online DEMO | Sólo aviso, sin sincronización o cambio de cantidades |
 
 Fallo real de cartografía se comunica por separado; nunca se usa como prueba de capacidad offline.
@@ -43,6 +44,8 @@ Fallo real de cartografía se comunica por separado; nunca se usa como prueba de
 Textos obligatorios o equivalentes claros: «DEMO · Datos ficticios», «Los cambios se reinician al recargar», «Reserva simulada», «Recepción simulada», «Despachos de ejemplo independientes», «Ruta ilustrativa, no verificada», «Vista previa DEMO · Sin validez oficial». Offline aclara que sólo es visual.
 
 Labels, foco y recorrido Tab/Enter/Escape; retorno de foco al cerrar diálogos. Prioridad/estado con texto, no sólo color. Mensajes perceptibles sin depender únicamente de toast. Lista de albergues y origen/destino permiten consultar sin operar canvas. Móvil reordena paneles; tablas/documentos desplazan dentro de su área sin overflow de página. Tokens/temas existentes, sin preferencias persistentes propias.
+
+Criterios acordados 2026-10-10: soporte desde 360 px y comprobación a 1280 px; texto ≥4,5:1 y controles/foco ≥3:1 en claro/oscuro. Confirmaciones/cambios se anuncian mediante una región de estado accesible; errores mediante alerta y restricciones mediante texto asociado al control. Los diálogos conservan sus títulos, descripción, cancelación y retorno de foco. El responsable autoriza continuar sin modificar las casillas del checklist.
 
 ## Frontera de scope
 

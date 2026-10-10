@@ -14,6 +14,7 @@
 
 - Q: ¿Qué debe ocurrir en despachos cuando se confirma una reserva simulada en asignaciones? → A: Opción A. La reserva actualiza disponibilidad y cantidades reservadas; los despachos de ejemplo permanecen independientes, identificados como tales y con inventario coherente.
 - Instrucción de planificación: incluir formularios de interacción DEMO y una simulación exclusivamente visual de conectividad offline; mantener fixtures compartidos y estado temporal, sin incorporar operaciones reales.
+- Decisión de implementación 2026-10-10: el responsable autoriza continuar con el checklist visual sin marcar. Se acuerdan ancho mínimo de 360 px y revisión a 1280 px, contraste de texto ≥4,5:1 y controles/foco ≥3:1, y anuncios accesibles de confirmaciones, errores y cambios. La cola pendiente offline es una maqueta visual sin operaciones encoladas ni sincronización; no altera cantidades ni estados de recepción.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -150,7 +151,7 @@ Como participante de la revisión, quiero ver el manifiesto y el acta de un desp
 - **SC-004**: En todos los insumos del escenario y después de cada reserva probada, no hay cantidades negativas, sobreasignación ni reservas duplicadas; las cantidades vinculadas concuerdan entre pantallas.
 - **SC-005**: Al simular una recepción elegible cambia una sola vez a recibido y se refleja en el acta del mismo despacho. El preparado no se recibe y el ya recibido no duplica la recepción.
 - **SC-006**: Las dos vistas documentales coinciden con el despacho referido en origen, destino, vehículo, insumos, unidades y cantidades; el acta también coincide en el estado de recepción. Ambas muestran DEMO y ausencia de validez oficial.
-- **SC-007**: Los recorridos principales pueden completarse en una pantalla móvil y con teclado, sin controles inaccesibles, texto crítico oculto ni desbordamiento de la página; cualquier desplazamiento de tablas queda dentro de su área.
+- **SC-007**: Los recorridos principales pueden completarse desde 360 px de ancho, con revisión adicional a 1280 px y con teclado, sin controles inaccesibles, texto crítico oculto ni desbordamiento de la página; cualquier desplazamiento de tablas queda dentro de su área. En los temas existentes, el contraste de texto es ≥4,5:1 y el de controles/foco ≥3:1. Confirmaciones y cambios tienen anuncios accesibles; errores y restricciones son perceptibles también sin visión.
 - **SC-008**: Durante el recorrido no se crean operaciones reales, archivos finales ni cambios duraderos; después de recargar reaparece el escenario inicial. La persona que revisa puede reconocer en cada pantalla qué datos, rutas y acciones son simulados.
 - **SC-009**: Las comprobaciones de regresión mantienen el acceso y comportamiento previo de las rutas existentes fuera de `/demo`, incluida la entrada al inicio de sesión y la protección de rutas privadas.
 - **SC-010**: Alternar online/offline DEMO conserva las cantidades y estados, permite seguir el recorrido local y no muestra operaciones guardadas o sincronizadas. Si falla la cartografía real, la persona puede seguir consultando albergues y despachos mediante su información textual.

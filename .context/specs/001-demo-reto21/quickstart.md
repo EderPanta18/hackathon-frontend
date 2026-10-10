@@ -34,7 +34,7 @@ Tests puros con imports relativos, sin nuevo `vitest.config`. No existen `pnpm t
 5. Manifiesto/acta: mismo ID, carga, unidades, vehículo/estado y retorno. Entrada sin ID y con ID inválido ofrece ejemplo/aviso; no descarga ni firma final.
 6. Alternar offline visual: mismos datos/acciones locales y sin sincronización al reconectar. Bloquear por separado cartografía o WebGL: fallo real y continuidad textual, sin modificar escenario.
 7. Navegar y volver conserva reservas/recepciones; recargar reinicia, manteniendo sólo referencia URL si válida. Salir desmontando layout y volver inicia otro recorrido.
-8. Revisar 360 px/1280 px como tamaños de QA, claro/oscuro, Tab/Enter/Escape, foco y mensajes. Sin overflow de página; mapa ajustado y atribución visible.
+8. Verificar soporte desde 360 px y revisar también a 1280 px, claro/oscuro, Tab/Enter/Escape, foco y mensajes accesibles. Contraste: texto ≥4,5:1, controles/foco ≥3:1. Sin overflow de página; mapa ajustado y atribución visible. La cola offline es sólo maqueta y no se procesa al reconectar.
 9. Remontar mapa/cambiar filtros: sin canvas/listeners duplicados ni errores no controlados. Acciones DEMO no generan solicitudes de negocio.
 
 ## Evidencia y cierre

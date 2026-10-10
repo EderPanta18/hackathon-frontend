@@ -26,7 +26,7 @@ Sin backend, API de negocio, base de datos, autenticación DEMO, persistencia, n
 
 **Purpose**: Hacer explícitos los requisitos pendientes antes de aprobar su materialización. No instalar paquetes ni configurar herramientas.
 
-- [ ] T001 Registrar, tras obtener las decisiones del responsable, los criterios de tamaños mínimos, contraste medible y comunicación a lectores de pantalla en `.context/specs/001-demo-reto21/spec.md` y `.context/specs/001-demo-reto21/contracts/demo-ui.md`; alinear `.context/specs/001-demo-reto21/quickstart.md` con ellos. Alcance: sólo CHK025/CHK027/CHK028; sin asumir umbrales o alterar funcionalidades. Cierre: decisiones trazables y sin contradicciones; el revisor resuelve las marcas de `.context/specs/001-demo-reto21/checklists/prototipo-visual.md`, no el implementador automáticamente.
+- [x] T001 Registrar, tras obtener las decisiones del responsable, los criterios de tamaños mínimos, contraste medible y comunicación a lectores de pantalla en `.context/specs/001-demo-reto21/spec.md` y `.context/specs/001-demo-reto21/contracts/demo-ui.md`; alinear `.context/specs/001-demo-reto21/quickstart.md` con ellos. Alcance: sólo CHK025/CHK027/CHK028; sin asumir umbrales o alterar funcionalidades. Cierre: decisiones trazables y sin contradicciones; el revisor resuelve las marcas de `.context/specs/001-demo-reto21/checklists/prototipo-visual.md`, no el implementador automáticamente.
 
 **Checkpoint**: Generar estas tareas no aprueba el checklist personalizado. La futura ejecución debe respetar su gate; las casillas no se rellenan en bloque ni se ignoran porque exista el checklist general 16/16. T001 queda pendiente mientras falten decisiones o revisión. No bloquea esta entrega documental de tasks.
 
