@@ -4,7 +4,6 @@ import { type GeoJSONSource, Map as LibreMap, NavigationControl, setWorkerUrl } 
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/ui/primitives/button";
 import type { DemoMapData } from "../data/demo.geojson";
-import styles from "./demo.module.css";
 import "maplibre-gl/dist/maplibre-gl.css";
 
 setWorkerUrl(new URL("maplibre-gl/dist/maplibre-gl-worker.mjs", import.meta.url).toString());
@@ -164,10 +163,10 @@ export default function DemoMap({
     ]);
   }, [selectedId, mode]);
   return (
-    <section className={styles.map} aria-label="Mapa ilustrativo de Piura">
-      <div ref={container} className={styles.mapCanvas} />
+    <section className={"demo-map"} aria-label="Mapa ilustrativo de Piura">
+      <div ref={container} className={"demo-mapCanvas"} />
       {mode !== "ready" && (
-        <div className={styles.mapNotice} aria-live="polite" aria-atomic="true">
+        <div className={"demo-mapNotice"} aria-live="polite" aria-atomic="true">
           <strong>
             {mode === "loading"
               ? "Cargando cartografía…"
@@ -186,7 +185,7 @@ export default function DemoMap({
           )}
         </div>
       )}
-      <div className={styles.mapCaption}>
+      <div className={"demo-mapCaption"}>
         Piura · ubicaciones y zonas aproximadas DEMO
         <br />
         A: alta · M: media · B: baja · O: origen

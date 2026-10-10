@@ -2,7 +2,6 @@ import { Card } from "@/ui/display/card";
 import { Table } from "@/ui/display/table";
 import { Badge } from "@/ui/primitives/badge";
 import type { Shelter } from "../data/demo.types";
-import styles from "./demo.module.css";
 
 export type ShelterDetailProps = {
   shelter: Shelter;
@@ -26,26 +25,26 @@ export function ShelterDetail({
   needs,
 }: ShelterDetailProps) {
   return (
-    <Card className={styles.shelterDetail}>
+    <Card className={"demo-shelterDetail"}>
       <Card.Header>
-        <div className={styles.row}>
+        <div className={"demo-row"}>
           <Badge tone={shelter.priority === "alta" ? "destructive" : "neutral"} variant="soft">
             Prioridad {shelter.priority}
           </Badge>
-          <span className={styles.muted}>{shelter.id}</span>
+          <span className={"demo-muted"}>{shelter.id}</span>
         </div>
         <Card.Title>
           <h2>{shelter.name}</h2>
         </Card.Title>
         <Card.Description>{territoryLabel}</Card.Description>
       </Card.Header>
-      <Card.Content className={styles.stack}>
+      <Card.Content className={"demo-stack"}>
         <div>
-          <span className={styles.population}>{shelter.population}</span> personas del escenario
+          <span className={"demo-population"}>{shelter.population}</span> personas del escenario
         </div>
         <div>
-          <h3 className={styles.subheading}>Grupos vulnerables</h3>
-          <dl className={styles.facts}>
+          <h3 className={"demo-subheading"}>Grupos vulnerables</h3>
+          <dl className={"demo-facts"}>
             {shelter.vulnerableGroups.map((g) => (
               <div key={g.label}>
                 <dt>{g.label}</dt>
@@ -53,11 +52,11 @@ export function ShelterDetail({
               </div>
             ))}
           </dl>
-          <p className={styles.muted}>
+          <p className={"demo-muted"}>
             Los grupos pueden solaparse; no se suman como personas distintas.
           </p>
         </div>
-        <div className={styles.tableScroll}>
+        <div className={"demo-tableScroll"}>
           <Table>
             <Table.Caption>Necesidades del albergue DEMO</Table.Caption>
             <Table.Header>
@@ -72,11 +71,11 @@ export function ShelterDetail({
                 <Table.Row key={n.itemId}>
                   <Table.Cell>
                     {n.label}
-                    <small className={styles.unit}>{n.unit}</small>
+                    <small className={"demo-unit"}>{n.unit}</small>
                   </Table.Cell>
                   <Table.Cell>
                     {n.required}
-                    <small className={styles.unit}>{n.received} recibidos</small>
+                    <small className={"demo-unit"}>{n.received} recibidos</small>
                   </Table.Cell>
                   <Table.Cell>{n.uncovered}</Table.Cell>
                 </Table.Row>
@@ -84,7 +83,7 @@ export function ShelterDetail({
             </Table.Body>
           </Table>
         </div>
-        <p className={styles.muted}>
+        <p className={"demo-muted"}>
           Prioridad fija y ubicación aproximada DEMO.
           <br />
           {sourceLabel} · {referenceDate}
