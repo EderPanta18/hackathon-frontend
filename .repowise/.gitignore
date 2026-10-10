@@ -1,0 +1,21 @@
+# Ignora todo el estado local y regenerable producido por Repowise.
+#
+# Sólo los artefactos explícitamente declarados como configuración durable
+# deben permanecer versionados.
+
+# -----------------------------------------------------------------------------
+# Generated local state
+# -----------------------------------------------------------------------------
+
+*
+
+
+# -----------------------------------------------------------------------------
+# Versioned configuration
+# -----------------------------------------------------------------------------
+
+# Mantener este archivo de política versionado.
+!.gitignore
+
+# Configuración reproducible del proyecto.
+!config.yaml

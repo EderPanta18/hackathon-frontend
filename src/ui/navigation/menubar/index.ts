@@ -1,0 +1,57 @@
+// src/ui/navigation/menubar/index.ts
+
+import {
+  MenubarCheckboxItem,
+  MenubarContent,
+  MenubarGroup,
+  MenubarItem,
+  MenubarLabel,
+  MenubarMenu,
+  MenubarPortal,
+  MenubarRadioGroup,
+  MenubarRadioItem,
+  Menubar as MenubarRoot,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarSub,
+  MenubarSubContent,
+  MenubarSubTrigger,
+  MenubarTrigger,
+} from "./Menubar";
+
+export const Menubar = Object.assign(MenubarRoot, {
+  Menu: MenubarMenu,
+  Group: MenubarGroup,
+  Portal: MenubarPortal,
+  RadioGroup: MenubarRadioGroup,
+  Trigger: MenubarTrigger,
+  Content: MenubarContent,
+  Item: MenubarItem,
+  CheckboxItem: MenubarCheckboxItem,
+  RadioItem: MenubarRadioItem,
+  Label: MenubarLabel,
+  Separator: MenubarSeparator,
+  Shortcut: MenubarShortcut,
+  Sub: MenubarSub,
+  SubTrigger: MenubarSubTrigger,
+  SubContent: MenubarSubContent,
+});
+
+export type {
+  MenubarCheckboxItemProps,
+  MenubarContentProps,
+  MenubarGroupProps,
+  MenubarItemProps,
+  MenubarLabelProps,
+  MenubarMenuProps,
+  MenubarPortalProps,
+  MenubarProps,
+  MenubarRadioGroupProps,
+  MenubarRadioItemProps,
+  MenubarSeparatorProps,
+  MenubarShortcutProps,
+  MenubarSubContentProps,
+  MenubarSubProps,
+  MenubarSubTriggerProps,
+  MenubarTriggerProps,
+} from "./menubar.types";

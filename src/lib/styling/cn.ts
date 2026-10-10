@@ -1,0 +1,8 @@
+// src/lib/styling/cn.ts
+
+import { clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: Parameters<typeof clsx>): string {
+    return twMerge(clsx(...inputs));
+}
