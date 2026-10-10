@@ -120,6 +120,28 @@
   font-size: 14px;
   font-weight: 600;
 }
+.demo-offline {
+  border: 2px dashed var(--foreground);
+  background: var(--card);
+  border-radius: 10px;
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+.demo-offline h2 {
+  font-weight: 650;
+  font-size: 18px;
+}
+.demo-queueRow {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  background: var(--muted);
+  color: var(--foreground);
+  border-radius: 5px;
+}
 .demo-skip {
   position: absolute;
   left: 12px;
