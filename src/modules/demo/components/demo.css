@@ -482,6 +482,51 @@
   border: 1px solid;
   border-radius: 6px;
 }
+@media (max-width: 600px) {
+  .demo-paper {
+    width: calc(100% - 24px);
+    padding: 20px 16px;
+    margin: 12px;
+  }
+  .demo-paperHeader {
+    flex-wrap: wrap;
+  }
+  .demo-paperHeader h2 {
+    font-size: 23px;
+    overflow-wrap: anywhere;
+  }
+  .demo-paperStamp {
+    text-align: left;
+    font-size: 16px;
+  }
+  .demo-documentBar {
+    flex-wrap: wrap;
+    padding: 12px;
+  }
+  .demo-documentBar strong {
+    flex: 1;
+  }
+  .demo-routeFacts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .demo-map,
+  .demo-mapCanvas {
+    min-height: 320px;
+  }
+  .demo-mapNotice {
+    top: 10px;
+    left: 10px;
+    right: 62px;
+  }
+  .demo-dialog {
+    max-height: 85dvh;
+    overflow-y: auto;
+  }
+  .demo-row > a {
+    white-space: normal;
+    text-align: center;
+  }
+}
 .demo-receiptPending {
   background: #fff6df;
   color: #704000;
