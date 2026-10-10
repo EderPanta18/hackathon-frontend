@@ -3,29 +3,30 @@ schema: agent-state/v1
 session: 0
 updated: 2026-10-10
 branch: eder
-head: 927d22b
+head: 64c4f84
 status: idle
 ---
 
 # Intent
 
-Revisar calidad de requisitos del prototipo visual DEMO, sin implementar ni ampliar scope.
+Descomponer el prototipo visual DEMO en tareas delimitadas, ordenadas y verificables.
 
 # Done
 
 Spec y plan previos conservados: respuesta A, 25 FR/10 SC, datos compartidos y offline visual.
-Checklist específico checklists/prototipo-visual.md con 32 criterios trazables.
-Evaluación documental: 29 cubiertos, 1 parcial (responsive) y 2 brechas (accesibilidad).
+Checklist previo: 29 cubiertos, 1 parcial y 2 brechas sobre 32; marcas del revisor intactas.
+tasks.md generado: 25 tareas pendientes, US1=4/US2=2/US3=2/US4=4.
+Siete pasos de construcción en orden, precedidos por T001 de aclaración documental.
 
 # Now
 
-Revisión terminada; precisar los tres criterios pendientes antes de aprobar requisitos.
-Las casillas del checklist personalizado permanecen para aprobación del revisor.
+Tasks generadas, sin implementar. T001 conserva CHK025/027/028 y gate del checklist.
+No se interpretó la petición de tasks como aprobación de requisitos o de implementación.
 
 # Evidence
 
-check-prerequisites.ps1 -Json -Template checklist-template resolvió feature/template.
-Spec, plan, data-model, contrato y quickstart contrastados; sin tasks existentes.
+setup-tasks.ps1 -Json resolvió feature/template; spec/plan/modelo/contrato contrastados.
+Dependencias, criterios de cierre y trazabilidad definidos para 25 FR y 10 SC.
 CHK025: tamaños móviles en guía QA no delimitan explícitamente aceptación.
 CHK027/028: faltan contraste medible y comunicación no visual de cambios de estado.
 No existen .specify/extensions.yml ni hooks que ejecutar.
@@ -35,6 +36,7 @@ Sin build ni pruebas de interfaz: sólo documentación.
 
 .context/specs/001-demo-reto21/spec.md
 .context/specs/001-demo-reto21/plan.md
+.context/specs/001-demo-reto21/tasks.md
 .context/specs/001-demo-reto21/data-model.md
 .context/specs/001-demo-reto21/contracts/demo-ui.md
 .context/specs/001-demo-reto21/checklists/requirements.md
@@ -56,5 +58,5 @@ src/ui/UI_COMPONENTES.md y src/ui/UI_COMPONENTS_AGENTS.md; no se modifican.
 
 # Next
 
-Resolver criterios responsive/contraste/anuncios accesibles y revisar casillas.
-Después generar tasks cuando se solicite. No implementar en esta fase.
+Resolver T001 con decisiones explícitas y revisión de checklist; después seguir tareas
+en orden cuando se solicite implementación. No implementar en esta fase.
