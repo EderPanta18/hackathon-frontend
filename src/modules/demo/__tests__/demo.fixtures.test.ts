@@ -1,5 +1,24 @@
 import { describe, expect, it } from "vitest";
 import { demoScenario as s } from "../data/demo.fixtures";
+import { geojsonFor } from "../data/demo.geojson";
+
+it("proyecta GeoJSON válido, filtrado y referido a fixtures", () => {
+  expect(geojsonFor("norte").points.features.map((x) => x.id)).toEqual(["alb-01", "alb-02"]);
+  expect(geojsonFor("reserva").points.features).toEqual([]);
+  expect(geojsonFor("", "", "DES-DEMO-002").routes.features[0].id).toBe("DES-DEMO-002");
+  expect(geojsonFor("", "", "invalid").routes.features).toEqual([]);
+  for (const z of s.zones) {
+    const ring = z.geometry.coordinates[0];
+    expect(ring.length).toBeGreaterThanOrEqual(4);
+    expect(ring[0]).toEqual(ring.at(-1));
+  }
+  for (const p of [...s.shelters, ...s.warehouses]) {
+    const [lng, lat] = p.geometry.coordinates;
+    expect(Math.abs(lng)).toBeLessThanOrEqual(180);
+    expect(Math.abs(lat)).toBeLessThanOrEqual(90);
+  }
+});
+
 import {
   indicatorsFor,
   initialDemoState,
