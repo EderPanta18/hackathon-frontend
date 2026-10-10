@@ -1,6 +1,6 @@
 # Quickstart: validación futura
 
-Ejecutar después de implementar. Esta entrega de planificación no crea pantallas ni ejecuta los checks de aplicación siguientes.
+Guía de verificación del prototipo implementado. Los resultados observados se registran al final; una vista previa DEMO no es una operación real.
 
 ## Prerrequisitos
 
@@ -41,4 +41,17 @@ Tests puros con imports relativos, sin nuevo `vitest.config`. No existen `pnpm t
 
 Registrar checks realmente ejecutados, resultados y limitaciones; distinguir fallos previos. Revisar diff/staging y archivos protegidos; commit de tarea verificada sin cambios ajenos.
 
-En esta fase sólo revisar documentación, links, cobertura y diff. Siguiente paso: `$speckit-tasks`; implementación requiere solicitud posterior.
+Las tareas y la evidencia de implementación se mantienen en este directorio de Spec Kit; no se aprueban automáticamente las casillas del revisor.
+
+## Evidencia técnica · 2026-10-10 · T023
+
+- Vitest: 3 archivos, 9 pruebas aprobadas (integridad, cantidades, duplicados, estados y acceso). Comando de arriba ejecutado con las dependencias existentes.
+- `pnpm exec tsc --noEmit`: aprobado. También se comprobó TypeScript antes de cada commit de implementación.
+- Biome focalizado: 28 archivos comprobados, sin fixes pendientes ni errores.
+- `pnpm build`: aprobado; compilación, TypeScript y generación de páginas completadas. `/demo` está prerenderizada; las cuatro vistas con parámetros usan prerender parcial y un Suspense local. No hay Server Actions ni endpoints DEMO.
+- Un intento anterior de Vitest falló con ENOENT en la caché temporal del sandbox; la repetición fuera del sandbox y el barrido final aprobaron. No se instaló ni configuró tooling.
+- El pipeline CSS existente no expone clases de CSS Modules. Se usa `src/modules/demo/components/demo.css` con clases `demo-*` y estilos limitados a la demo; no se modificó Next/configuración o `globals.css`.
+- Las páginas normalizan parámetros escalares; el módulo valida cada referencia contra fixtures antes de seleccionar datos. Una referencia inválida muestra aviso y ejemplo válido.
+- Revisión de código DEMO: sin fetch/axios/clientes de negocio, persistencia, service worker, grafo vial ni exportadores. OpenFreeMap es únicamente cartografía de presentación con red y atribución.
+- Las cinco rutas se comprobaron a 360 y 1280 px: sin desbordamiento de página; las tablas desplazan dentro de su contenedor. Mapa y worker cargaron en el navegador existente `http://localhost:3000`; no se terminó ni reemplazó su servidor.
+- Contraste calculado desde los tokens: texto secundario/card 12,49:1 claro y 9,65:1 oscuro; texto de botón primario 13,57:1 y 5,96:1. Texto, controles y foco revisados superan los umbrales acordados. La comprobación visual actual se realizó en oscuro; no equivale a un ensayo con lector de pantalla real.
