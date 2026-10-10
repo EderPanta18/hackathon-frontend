@@ -295,6 +295,42 @@
 .demo-wideTable {
   min-width: 760px;
 }
+.demo-timeline {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding: 12px 0;
+}
+.demo-timeline li {
+  border-top: 3px solid var(--muted-foreground);
+  padding-top: 10px;
+  font-size: 13px;
+}
+.demo-timeline li[data-complete="true"] {
+  border-color: var(--primary);
+}
+.demo-timeline li span {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--foreground);
+  border-radius: 50%;
+  margin-right: 6px;
+}
+.demo-routeFacts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.demo-routeFacts dt {
+  font-size: 12px;
+  color: var(--muted-foreground);
+}
+.demo-routeFacts dd {
+  font-size: 14px;
+  font-weight: 600;
+}
 @media (max-width: 1150px) {
   .demo-dashboardGrid {
     grid-template-columns: minmax(0, 1fr);
