@@ -55,3 +55,24 @@ Las tareas y la evidencia de implementación se mantienen en este directorio de 
 - Revisión de código DEMO: sin fetch/axios/clientes de negocio, persistencia, service worker, grafo vial ni exportadores. OpenFreeMap es únicamente cartografía de presentación con red y atribución.
 - Las cinco rutas se comprobaron a 360 y 1280 px: sin desbordamiento de página; las tablas desplazan dentro de su contenedor. Mapa y worker cargaron en el navegador existente `http://localhost:3000`; no se terminó ni reemplazó su servidor.
 - Contraste calculado desde los tokens: texto secundario/card 12,49:1 claro y 9,65:1 oscuro; texto de botón primario 13,57:1 y 5,96:1. Texto, controles y foco revisados superan los umbrales acordados. La comprobación visual actual se realizó en oscuro; no equivale a un ensayo con lector de pantalla real.
+
+## Evidencia visual y técnica final · 2026-10-10 · T024
+
+- Las cinco vistas se recorrieron sin sesión a 360 y 1280 px. Sin desbordamiento horizontal de página; tablas desplazables con teclado, navegación visible, atribución del mapa y avisos DEMO presentes.
+- Filtros: 370 personas inicialmente, 210 en norte y cero en la zona vacía; limpiar restaura el escenario. Seleccionar un pin real del canvas seleccionó El Encuentro DEMO. Mapa y worker locales cargaron con OpenFreeMap.
+- Reserva: cancelar conserva cantidades; confirmar reserva parcial muestra exactamente lo confirmado, actualiza disponibilidad compartida e impide repetir. Las cargas de despacho permanecen independientes. Recepción: sólo tránsito admite una confirmación, cancelar conserva estado, preparado/recibido deshabilitan la acción y no se descuenta stock de origen otra vez.
+- Despacho DES-DEMO-002 y documentos conservaron destino, vehículo y carga de 30 bidones / 15 kits. El acta pasó de pendiente a recepción simulada al confirmar. Navegar, volver y avanzar conservó el estado temporal; recargar restableció el escenario.
+- Las cuatro vistas con parámetros recuperan referencias inválidas con aviso y ejemplo válido. Las páginas leen searchParams en un hijo async dentro de Suspense; se corrigió el aviso Instant de Next sin cambiar configuración. Tras recargar y recorrer de nuevo las vistas, no hubo errores nuevos de consola ni aviso Instant.
+- Offline: la fila pendiente es una maqueta visual. No cambia cantidades ni estados; volver a online la oculta y anuncia que no hubo sincronización. Las acciones locales siguen siendo demostraciones.
+- Tab/Enter/Escape, cierre y devolución de foco comprobados en diálogos; las tablas responden a flechas. Confirmaciones y errores exponen status/alert y etiquetas en el DOM accesible. Contraste calculado en claro/oscuro con los tokens: texto y controles/foco superan 4,5:1 y 3:1 respectivamente.
+- HTTP anónimo: las cinco rutas DEMO y /login devolvieron 200; /demo-extra, /demostracion y / conservaron 307 hacia login. Revisión del código sin solicitudes de negocio, persistencia, sincronización, Valhalla ni generación de archivos.
+- Build y TypeScript repetidos tras el ajuste de Suspense: aprobados. Biome focalizado: 29 archivos, aprobado. Vitest: 4 archivos y 11 pruebas aprobadas, incluidas recuperación de WebGL, reintento, limpieza y aviso de fallo parcial.
+- Capturas: [dashboard a 1280 px](evidence/dashboard-1280.jpg), [acta a 360 px](evidence/acta-360.jpg).
+
+El test de mapa usa jsdom y MapLibre simulado. El comando siguiente resuelve aliases y JSX en memoria con dependencias instaladas, sin crear configuración ni instalar paquetes:
+
+```powershell
+pnpm exec node --input-type=module -e 'import { startVitest } from "vitest/node"; import react from "@vitejs/plugin-react"; const ctx = await startVitest("test", ["src/modules/demo/__tests__", "src/middleware/route-policy.test.ts"], {watch:false}, {plugins:[react()],resolve:{tsconfigPaths:true}}); const files = ctx.state.getFiles(); const ok = files.length === 4 && files.every(f => f.result?.state === "pass"); await ctx.close(); process.exit(ok ? 0 : 1);'
+```
+
+Límites de la revisión: inspección visual realizada en oscuro; en claro se calcularon contrastes, sin recorrido visual completo. No se ejecutó un lector de pantalla real ni un corte real de red; los fallos WebGL/teselas se comprobaron con mocks y la cartografía real sí cargó. El modo offline no corta la red. Ningún documento es un archivo final ni acredita una operación real. El checklist del revisor permanece sin marcar, según autorización expresa del usuario.
