@@ -8,6 +8,13 @@
 
 **Input**: User description: "Crear un prototipo visual y navegable del Reto 21 de Piura Innova, exclusivamente para explorar la experiencia de usuario antes de implementar el producto real. Debe contener rutas públicas /demo, /demo/asignaciones, /demo/despachos, /demo/documentos/manifiesto y /demo/documentos/acta. El dashboard mostrará un mapa de Piura con pines por prioridad, filtros territoriales, tarjetas de indicadores y detalles de albergues. La vista de asignaciones mostrará necesidades, stock disponible, propuestas de asignación, faltantes y reservas simuladas. La vista de despachos mostrará origen y destino, ruta ilustrativa, vehículo registrado, estados del despacho, confirmación de recepción y acceso a las vistas previas de Excel y PDF. Los datos serán ficticios, coherentes entre pantallas y marcados como DEMO. La interacción debe ser navegable, pero no depender de API, autenticación, persistencia, motor de rutas, sincronización offline real ni documentos finales. No alterar flujos existentes fuera de /demo. La finalidad es validar visualmente la experiencia, no desarrollar el sistema operativo definitivo."
 
+## Clarifications
+
+### Session 2026-10-10
+
+- Q: ¿Qué debe ocurrir en despachos cuando se confirma una reserva simulada en asignaciones? → A: Opción A. La reserva actualiza disponibilidad y cantidades reservadas; los despachos de ejemplo permanecen independientes, identificados como tales y con inventario coherente.
+- Instrucción de planificación: incluir formularios de interacción DEMO y una simulación exclusivamente visual de conectividad offline; mantener fixtures compartidos y estado temporal, sin incorporar operaciones reales.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Explorar albergues y prioridades (Priority: P1)
@@ -38,7 +45,7 @@ Como participante de la revisión, quiero contrastar necesidades con stock y pro
 **Acceptance Scenarios**:
 
 1. **Given** el escenario DEMO inicial, **When** abre `/demo/asignaciones`, **Then** ve necesidades por albergue e insumo, existencias, reservas, stock disponible, propuestas y faltantes con unidades explícitas.
-2. **Given** una propuesta atendible, **When** activa la acción de reservar, **Then** recibe una confirmación identificada como simulada, aumenta la reserva correspondiente y disminuye el disponible en la misma cantidad, sin marcar una entrega recibida.
+2. **Given** una propuesta atendible, **When** activa la acción de reservar, **Then** recibe una confirmación identificada como simulada, aumenta la reserva correspondiente y disminuye el disponible en la misma cantidad, sin marcar una entrega recibida ni crear o modificar despachos de ejemplo.
 3. **Given** un insumo con disponibilidad insuficiente o nula, **When** revisa la propuesta, **Then** ve la parte atendible y el faltante sin cantidades negativas ni reservas superiores al disponible.
 4. **Given** una propuesta ya reservada durante el recorrido, **When** intenta repetir la reserva, **Then** no se duplica y se muestra su condición actual.
 5. **Given** una reserva simulada, **When** navega a otra pantalla DEMO y vuelve, **Then** conserva cantidades y referencias coherentes durante ese recorrido; al recargar se restablece el escenario inicial y se informa este comportamiento.
@@ -84,6 +91,7 @@ Como participante de la revisión, quiero ver el manifiesto y el acta de un desp
 - Albergue seleccionado que deja de cumplir el filtro: retirar su detalle o informar que quedó fuera de la selección.
 - Stock agotado, propuesta parcial o reserva repetida: mostrar faltantes y estado actual sin exceder cantidades ni duplicar movimientos.
 - Cambio entre pantallas después de una simulación: mantener coherencia entre indicadores relacionados, cantidades, estados y documentos del mismo recorrido.
+- Conectividad offline simulada: cambiar únicamente avisos visuales DEMO, sin cortar la red, bloquear las simulaciones locales ni crear una cola de sincronización. Un fallo real del mapa se comunica por separado.
 - Recarga o nueva visita: restablecer el escenario inicial, sin afirmar que los cambios se guardaron o sincronizaron.
 - Entrada directa a asignaciones, despachos o documentos: mostrar contenido DEMO utilizable sin pasos previos, sesión o selección obligatoria.
 - Intento de recepción anticipada o repetida: impedir la transición incoherente y explicar el estado.
@@ -103,7 +111,7 @@ Como participante de la revisión, quiero ver el manifiesto y el acta de un desp
 - **FR-007**: Las posiciones, prioridades y accesibilidad simuladas DEBEN identificarse como referencias del escenario. No se DEBEN presentar cifras históricas, nombres ficticios o coordenadas aproximadas como un padrón actual verificado de Piura. Cubre historia 1 y casos límite geográficos.
 - **FR-008**: Asignaciones DEBE mostrar necesidades, existencias, reservas, stock disponible para nuevas reservas, propuestas y faltantes, con unidades consistentes por insumo. Cubre historia 2, escenarios 1 a 3.
 - **FR-009**: La propuesta DEBE diferenciar cantidad atendible y faltante; no puede exceder la necesidad pendiente ni la disponibilidad del escenario. Las existencias, reservas y cantidades ya despachadas DEBEN distinguirse sin descontar dos veces el mismo material. Cubre historia 2, escenarios 1 a 3.
-- **FR-010**: La acción de reserva DEBE modificar sólo el escenario DEMO, reflejarse en sus cantidades relacionadas, mostrar confirmación simulada y evitar duplicados. Una reserva no DEBE contarse como material despachado o recibido. Cubre historia 2, escenarios 2 a 5.
+- **FR-010**: La acción de reserva DEBE modificar sólo disponibilidad y cantidades reservadas del escenario DEMO, reflejarse en sus cantidades relacionadas, mostrar confirmación simulada y evitar duplicados. Los despachos de ejemplo DEBEN permanecer independientes e identificados como tales, con sus cargas ya contempladas en el inventario inicial. Una reserva no DEBE crear o modificar un despacho ni contarse como material despachado o recibido. Cubre historia 2, escenarios 2 a 5.
 - **FR-011**: Las referencias, unidades, cantidades y estados del escenario DEBEN ser coherentes entre mapa, indicadores, albergues, asignaciones, despachos y documentos. Las acciones simuladas DEBEN conservar esa coherencia al navegar; una recarga DEBE restablecer un escenario inicial coherente. Cubre historias 2 a 4.
 - **FR-012**: Despachos DEBE mostrar origen, destino, insumos y cantidades, ruta ilustrativa, vehículo registrado ficticio y estado del despacho seleccionado. Cubre historia 3, escenario 1.
 - **FR-013**: Toda ruta DEBE identificarse como ilustrativa y no verificada. Un bloqueo o falta de información del escenario DEBE ser visible; no se DEBE ofrecer una ruta segura, optimizada o calculada ni afirmar transitabilidad real. Cubre historia 3, escenario 2.
@@ -117,6 +125,8 @@ Como participante de la revisión, quiero ver el manifiesto y el acta de un desp
 - **FR-021**: La navegación y las simulaciones NO DEBEN depender de API de negocio, autenticación, persistencia entre visitas, motor de rutas ni sincronización offline real. No DEBEN anunciar datos en vivo, operaciones guardadas o sincronización real. Cubre historias 1 a 4 y casos límite de recarga.
 - **FR-022**: La incorporación del prototipo NO DEBE cambiar el comportamiento, apariencia, acceso ni datos de flujos existentes fuera de `/demo`. La apertura pública se limita a ese ámbito. Cubre la comprobación de regresión de acceso y navegación existente.
 - **FR-023**: Los controles DEBEN ser utilizables en móvil y con teclado, tener nombres y foco reconocibles y dar un resultado visible; las acciones no disponibles DEBEN explicar su restricción. No DEBE haber controles decorativos que aparenten una función operativa inexistente. Cubre todos los recorridos y casos límite de uso móvil/teclado.
+- **FR-024**: El prototipo DEBE ofrecer una simulación visual activable de conectividad online/offline, siempre identificada como DEMO. Cambiarla sólo DEBE alterar los avisos visuales: no corta la red, no bloquea acciones locales, no guarda operaciones pendientes ni sincroniza al volver a online. Un fallo real de cartografía DEBE tener su propio aviso y conservar el acceso a la información textual del escenario. Cubre el caso límite de conectividad simulada.
+- **FR-025**: Los formularios DEBEN limitarse a filtros/selección y confirmación de reserva o recepción de ejemplos existentes, con etiquetas, cancelación y resultado visible. No DEBEN introducir altas o edición de censos, almacenes, insumos, vehículos o despachos. Cubre historias 1 a 3 y FR-023.
 
 ### Key Entities *(include if feature involves data)*
 
@@ -143,6 +153,7 @@ Como participante de la revisión, quiero ver el manifiesto y el acta de un desp
 - **SC-007**: Los recorridos principales pueden completarse en una pantalla móvil y con teclado, sin controles inaccesibles, texto crítico oculto ni desbordamiento de la página; cualquier desplazamiento de tablas queda dentro de su área.
 - **SC-008**: Durante el recorrido no se crean operaciones reales, archivos finales ni cambios duraderos; después de recargar reaparece el escenario inicial. La persona que revisa puede reconocer en cada pantalla qué datos, rutas y acciones son simulados.
 - **SC-009**: Las comprobaciones de regresión mantienen el acceso y comportamiento previo de las rutas existentes fuera de `/demo`, incluida la entrada al inicio de sesión y la protección de rutas privadas.
+- **SC-010**: Alternar online/offline DEMO conserva las cantidades y estados, permite seguir el recorrido local y no muestra operaciones guardadas o sincronizadas. Si falla la cartografía real, la persona puede seguir consultando albergues y despachos mediante su información textual.
 
 ## Assumptions
 
@@ -152,6 +163,7 @@ Como participante de la revisión, quiero ver el manifiesto y el acta de un desp
 - Las prioridades se entregan como parte explícita del escenario ficticio. No se define un algoritmo de priorización, optimización, asignación automática o cálculo vial.
 - Se asume continuidad temporal dentro de la navegación DEMO y reinicio al recargar o abrir una nueva visita. No se exige compartir cambios entre pestañas, usuarios o dispositivos.
 - Las propuestas y despachos de ejemplo ya existen al abrir sus pantallas. La reserva y la recepción tienen una interacción simulada; crear despachos, registrar vehículos, editar censos y generar propuestas arbitrarias no son parte de este alcance.
+- Las prioridades son etiquetas fijas del escenario, iguales en mapa, detalles y asignaciones; no se editan ni recalculan al filtrar, reservar o recibir. Los despachos de ejemplo consumen o reservan su parte del inventario desde el escenario inicial, independientemente de nuevas reservas.
 - El manifiesto se revisa como tabla de aspecto Excel y el acta como documento de aspecto PDF dentro del prototipo. No se exige generar, descargar, imprimir, firmar ni certificar archivos finales.
-- El prototipo requiere sólo sus recursos de presentación para explorarse; no hay dependencia de servicios de negocio ni se promete un modo sin conexión. El tratamiento visual específico y la preparación de los datos ficticios se resolverán en planificación.
+- El prototipo requiere sólo sus recursos de presentación para explorarse; no hay dependencia de servicios de negocio ni se promete un modo sin conexión. El mapa base puede requerir red; la simulación visual offline no implica almacenamiento o sincronización real. El tratamiento visual específico y la preparación de los datos ficticios se resolverán en planificación.
 - La revisión documental confirma la calidad de esta especificación. La validación visual, móvil, de navegación y con participantes queda pendiente hasta implementar el prototipo.

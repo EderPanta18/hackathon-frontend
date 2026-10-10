@@ -3,33 +3,38 @@ schema: agent-state/v1
 session: 0
 updated: 2026-10-10
 branch: eder
-head: 2cc4278
+head: b3f2679
 status: idle
 ---
 
 # Intent
 
-Especificar el prototipo visual y navegable DEMO del Reto 21, aislado bajo /demo.
+Planificar el prototipo frontend DEMO del Reto 21, aislado bajo /demo, sin implementar.
 
 # Done
 
-Especificación y checklist en .context/specs/001-demo-reto21; puntero local .specify/feature.json.
-Cuatro recorridos, 23 requisitos y 9 criterios de éxito; sin aclaraciones materiales.
+Respuesta A integrada: reservas nuevas no crean ni modifican despachos de ejemplo.
+Spec actualizada con formularios acotados y offline sólo visual (25 FR, 10 SC).
+Plan, research, data-model, contracts/demo-ui y quickstart en la misma feature Spec Kit.
 
 # Now
 
-Especificación lista para planificación. No se ha implementado el prototipo.
+Plan técnico terminado y listo para generar tasks; ninguna implementación DEMO.
 
 # Evidence
 
-Revisión documental de alcance y checklist: 16/16 criterios satisfechos.
-Template resuelto mediante .specify/scripts/powershell/resolve-template.ps1.
+Checklist revalidado: 16/16 → 16/16, sin regresiones; una aclaración respondida.
+setup-plan.ps1 resolvió la feature; rama Git real eder (no el ID reportado por el script).
+Código local, APIs UI y documentación oficial de dependencias consultados.
 No existen .specify/extensions.yml ni hooks que ejecutar.
 Sin build ni pruebas de interfaz: sólo documentación.
 
 # Relevant Paths
 
 .context/specs/001-demo-reto21/spec.md
+.context/specs/001-demo-reto21/plan.md
+.context/specs/001-demo-reto21/data-model.md
+.context/specs/001-demo-reto21/contracts/demo-ui.md
 .context/specs/001-demo-reto21/checklists/requirements.md
 .specify/feature.json (local, ignorado por Git)
 src/lib/config/routes.config.ts: acceso autenticado por defecto; sólo /login público.
@@ -37,14 +42,15 @@ src/lib/config/routes.config.ts: acceso autenticado por defecto; sólo /login p�
 # Durable References
 
 La Constitution exige coherencia de inventario y distinguir reservado/despachado/recibido.
-El encargo limita rutas a ilustraciones y documentos a previsualizaciones DEMO.
+MapLibre 6.13.0 instalado; OpenFreeMap/worker requieren comprobación posterior.
+Rutas ilustrativas, documentos HTML sin archivos finales, sin API/DB/Valhalla/offline real.
 
 # Open Questions
 
-Ninguna para especificar. Cambios previos ajenos: package.json, pnpm-lock.yaml,
+Ninguna material para planificar. Cambios previos ajenos: package.json, pnpm-lock.yaml,
 src/ui/UI_COMPONENTES.md y src/ui/UI_COMPONENTS_AGENTS.md; no se modifican.
 
 # Next
 
-Ejecutar $speckit-plan sobre .context/specs/001-demo-reto21 cuando se solicite.
-Contemplar apertura pública limitada a /demo sin cambiar acceso de otras rutas.
+Ejecutar $speckit-tasks sobre .context/specs/001-demo-reto21 cuando se solicite.
+No implementar hasta recibir autorización de esa fase.
