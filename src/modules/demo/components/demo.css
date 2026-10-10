@@ -354,6 +354,113 @@
   border-color: var(--primary);
   box-shadow: inset 3px 0 var(--primary);
 }
+.demo-document {
+  border: 1px solid var(--demo-line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--muted);
+}
+.demo-documentBar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--card);
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--demo-line);
+  font-size: 14px;
+}
+.demo-documentBar > span {
+  margin-left: auto;
+  font-weight: 700;
+}
+.demo-paper {
+  background: #fff;
+  color: #172b42;
+  padding: 32px;
+  margin: 24px auto;
+  width: calc(100% - 48px);
+  max-width: 900px;
+  box-shadow: 0 2px 5px #0000001a;
+}
+.demo-paperHeader {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 2px solid #172b42;
+  padding-bottom: 20px;
+}
+.demo-paperHeader p {
+  font-size: 13px;
+}
+.demo-paperHeader h2 {
+  font-size: 26px;
+  font-weight: 650;
+  line-height: 1.3;
+  margin-top: 8px;
+}
+.demo-paperStamp {
+  font-size: 20px;
+  text-align: right;
+  color: #1c4f79;
+}
+.demo-paperStamp small {
+  font-size: 12px;
+  white-space: nowrap;
+}
+.demo-documentReference {
+  margin: 18px 0;
+  font-size: 13px;
+}
+.demo-documentFacts {
+  display: grid;
+  gap: 12px;
+  margin: 20px 0;
+}
+.demo-documentFacts dt {
+  font-size: 12px;
+  color: #42576b;
+}
+.demo-documentFacts dd {
+  font-size: 14px;
+  font-weight: 600;
+}
+.demo-paper [data-slot="table-head"],
+.demo-paper [data-slot="table-caption"] {
+  color: #42576b;
+}
+.demo-paper [data-slot="table-row"] {
+  border-color: #a7b4be;
+}
+.demo-paper [data-slot="table-row"]:hover {
+  background: #eef3f7;
+}
+.demo-paperFooter {
+  border-top: 1px solid #a7b4be;
+  margin-top: 28px;
+  padding-top: 16px;
+  font-size: 13px;
+}
+.demo-paperFooter p {
+  margin-top: 8px;
+  color: #42576b;
+}
+.demo-receiptPending,
+.demo-receiptReceived {
+  padding: 14px;
+  margin: 20px 0;
+  font-size: 14px;
+  border: 1px solid;
+  border-radius: 6px;
+}
+.demo-receiptPending {
+  background: #fff6df;
+  color: #704000;
+}
+.demo-receiptReceived {
+  background: #eaf6ef;
+  color: #16552e;
+}
 @media (max-width: 1100px) {
   .demo-dispatchGrid {
     grid-template-columns: minmax(0, 1fr);
