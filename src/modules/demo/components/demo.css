@@ -1,4 +1,5 @@
 .demo-root {
+  --muted-foreground: color-mix(in srgb, var(--foreground) 82%, var(--background));
   --demo-line: var(--border);
   min-height: 100dvh;
   background: var(--background);
@@ -159,8 +160,37 @@
   gap: 12px;
 }
 .demo-dialog {
+  --muted-foreground: color-mix(in srgb, var(--foreground) 82%, var(--background));
   color: var(--foreground);
   max-width: min(580px, calc(100vw - 32px));
+}
+.demo-root button,
+.demo-dialog button,
+.demo-root a[class*="border"] {
+  border-color: var(--foreground);
+}
+.demo-root button:disabled,
+.demo-dialog button:disabled {
+  opacity: 1;
+  border-style: dashed;
+  color: var(--foreground);
+  background: var(--muted);
+}
+.demo-root [data-slot="badge"] {
+  color: var(--foreground);
+  background: var(--muted);
+  border-color: var(--foreground);
+}
+.demo-root [data-slot="badge"][data-tone="destructive"] {
+  border-left: 4px solid #b42318;
+}
+.demo-tableScroll:focus-visible,
+.demo-focusTarget:focus {
+  outline: 3px solid var(--foreground);
+  outline-offset: 3px;
+}
+.demo-map :is(button, a):focus-visible {
+  outline-color: #123e71;
 }
 .demo-map {
   position: relative;
@@ -242,6 +272,10 @@
 .demo-tableScroll {
   max-width: 100%;
   overflow: auto;
+}
+.demo-tableScroll [data-slot="table-container"] {
+  overflow: visible;
+  height: auto;
 }
 .demo-unit {
   display: block;

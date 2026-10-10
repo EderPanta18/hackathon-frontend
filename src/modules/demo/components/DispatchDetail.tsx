@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { useId, useState } from "react";
+import { useId, useRef, useState } from "react";
 import { Card } from "@/ui/display/card";
 import { Table } from "@/ui/display/table";
 import { Dialog } from "@/ui/overlay/dialog";
@@ -40,6 +40,7 @@ export function DispatchDetail({
 }) {
   const [open, setOpen] = useState(false);
   const reasonId = useId();
+  const reasonRef = useRef<HTMLParagraphElement>(null);
   const canReceive = status === "en_transito";
   const step = ["preparado", "en_transito", "recibido"].indexOf(status);
   return (
@@ -87,7 +88,12 @@ export function DispatchDetail({
             </dd>
           </div>
         </dl>
-        <div className="demo-tableScroll">
+        <section
+          className="demo-tableScroll"
+          // biome-ignore lint/a11y/noNoninteractiveTabindex: El contenedor permite desplazar la tabla con flechas.
+          tabIndex={0}
+          aria-label="Tabla desplazable con teclado"
+        >
           <Table>
             <Table.Caption>Carga del despacho DEMO</Table.Caption>
             <Table.Header>
@@ -107,14 +113,14 @@ export function DispatchDetail({
               ))}
             </Table.Body>
           </Table>
-        </div>
+        </section>
         <div className="demo-notice">
           <strong>Ruta ilustrativa, no verificada</strong>Acceso del escenario:{" "}
           {dispatch.routeAccess === "bloqueado" ? "bloqueado" : "desconocido"}. La línea no indica
           una ruta segura, calculada ni transitable.
         </div>
         <PiuraMap data={mapData} />
-        <p id={reasonId} className="demo-muted">
+        <p id={reasonId} className="demo-muted demo-focusTarget" ref={reasonRef} tabIndex={-1}>
           {canReceive
             ? "Puedes simular la recepción una vez. No hay firma ni confirmación operativa; no se descuenta stock del origen nuevamente."
             : status === "preparado"
@@ -147,7 +153,16 @@ export function DispatchDetail({
               {status === "recibido" ? "Recepción DEMO registrada" : "Simular recepción"}
             </Button>
           </Dialog.Trigger>
-          <Dialog.Content className="demo-dialog">
+          <Dialog.Content
+            className="demo-dialog"
+            closeOnEscapeKeyDown
+            onCloseAutoFocus={(event) => {
+              if (!canReceive) {
+                event.preventDefault();
+                reasonRef.current?.focus();
+              }
+            }}
+          >
             <Dialog.Header>
               <Dialog.Title>Confirmar recepción simulada</Dialog.Title>
               <Dialog.Description>

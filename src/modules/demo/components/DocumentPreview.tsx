@@ -61,7 +61,12 @@ export function DocumentPreview({
             </p>
           </div>
         )}
-        <div className="demo-tableScroll">
+        <section
+          className="demo-tableScroll"
+          // biome-ignore lint/a11y/noNoninteractiveTabindex: El contenedor permite desplazar la tabla con flechas.
+          tabIndex={0}
+          aria-label="Tabla desplazable con teclado"
+        >
           <Table>
             <Table.Caption>
               {manifest ? "Carga del manifiesto DEMO" : "Detalle de entrega del acta DEMO"}
@@ -83,7 +88,7 @@ export function DocumentPreview({
               ))}
             </Table.Body>
           </Table>
-        </div>
+        </section>
         <div className="demo-paperFooter">
           <strong>Documento de ejemplo · Datos ficticios</strong>
           <p>

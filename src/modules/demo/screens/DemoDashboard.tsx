@@ -136,7 +136,9 @@ export function DemoDashboard() {
             ) : (
               <EmptyState>
                 <EmptyState.Header>
-                  <EmptyState.Title>Sin albergues en esta selección</EmptyState.Title>
+                  <EmptyState.Title>
+                    <h2>Sin albergues en esta selección</h2>
+                  </EmptyState.Title>
                   <EmptyState.Description>
                     Prueba otro sector o limpia los filtros.
                   </EmptyState.Description>

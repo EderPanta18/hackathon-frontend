@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useId, useRef, useState } from "react";
 import { Card } from "@/ui/display/card";
 import { Table } from "@/ui/display/table";
 import { Dialog } from "@/ui/overlay/dialog";
@@ -20,6 +20,7 @@ export function AssignmentForm({
   const [open, setOpen] = useState(false);
   const [shownLines, setShownLines] = useState<readonly CargoLine[]>([]);
   const reasonId = useId();
+  const reasonRef = useRef<HTMLParagraphElement>(null);
   const canReserve = !summary.reserved && summary.lines.some((x) => x.quantity > 0);
   return (
     <Card>
@@ -32,7 +33,12 @@ export function AssignmentForm({
         </Card.Description>
       </Card.Header>
       <Card.Content className="demo-stack">
-        <div className="demo-tableScroll">
+        <section
+          className="demo-tableScroll"
+          // biome-ignore lint/a11y/noNoninteractiveTabindex: El contenedor permite desplazar la tabla con flechas.
+          tabIndex={0}
+          aria-label="Tabla desplazable con teclado"
+        >
           <Table className="demo-wideTable">
             <Table.Caption>
               Necesidades y propuesta por insumo; no se suman unidades distintas
@@ -76,8 +82,8 @@ export function AssignmentForm({
               })}
             </Table.Body>
           </Table>
-        </div>
-        <p className="demo-muted" id={reasonId}>
+        </section>
+        <p className="demo-muted demo-focusTarget" id={reasonId} ref={reasonRef} tabIndex={-1}>
           {summary.reserved
             ? "Reserva simulada aplicada. No se puede duplicar. El faltante muestra lo que sigue sin compromiso."
             : canReserve
@@ -101,7 +107,16 @@ export function AssignmentForm({
               {summary.reserved ? "Reserva DEMO aplicada" : "Simular reserva"}
             </Button>
           </Dialog.Trigger>
-          <Dialog.Content className="demo-dialog">
+          <Dialog.Content
+            className="demo-dialog"
+            closeOnEscapeKeyDown
+            onCloseAutoFocus={(event) => {
+              if (!canReserve) {
+                event.preventDefault();
+                reasonRef.current?.focus();
+              }
+            }}
+          >
             <Dialog.Header>
               <Dialog.Title>Confirmar reserva simulada</Dialog.Title>
               <Dialog.Description>

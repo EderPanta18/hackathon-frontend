@@ -66,7 +66,12 @@ export function DemoAssignments({ reference }: { reference?: string }) {
           </Card.Description>
         </Card.Header>
         <Card.Content>
-          <div className="demo-tableScroll">
+          <section
+            className="demo-tableScroll"
+            // biome-ignore lint/a11y/noNoninteractiveTabindex: El contenedor permite desplazar la tabla con flechas.
+            tabIndex={0}
+            aria-label="Tabla desplazable con teclado"
+          >
             <Table>
               <Table.Caption>Cantidades DEMO por insumo</Table.Caption>
               <Table.Header>
@@ -102,7 +107,7 @@ export function DemoAssignments({ reference }: { reference?: string }) {
                 })}
               </Table.Body>
             </Table>
-          </div>
+          </section>
         </Card.Content>
       </Card>
       <AssignmentForm

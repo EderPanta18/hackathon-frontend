@@ -58,7 +58,12 @@ export function ShelterDetail({
             Los grupos pueden solaparse; no se suman como personas distintas.
           </p>
         </div>
-        <div className={"demo-tableScroll"}>
+        <section
+          className="demo-tableScroll"
+          // biome-ignore lint/a11y/noNoninteractiveTabindex: El contenedor permite desplazar la tabla con flechas.
+          tabIndex={0}
+          aria-label="Tabla desplazable con teclado"
+        >
           <Table>
             <Table.Caption>Necesidades del albergue DEMO</Table.Caption>
             <Table.Header>
@@ -84,7 +89,7 @@ export function ShelterDetail({
               ))}
             </Table.Body>
           </Table>
-        </div>
+        </section>
         <p className={"demo-muted"}>
           Prioridad fija y ubicación aproximada DEMO.
           <br />
