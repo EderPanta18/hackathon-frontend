@@ -3,60 +3,37 @@ schema: agent-state/v1
 session: 0
 updated: 2026-10-10
 branch: eder
-head: 64c4f84
+head: b15b14d
 status: idle
 ---
 
 # Intent
 
-Descomponer el prototipo visual DEMO en tareas delimitadas, ordenadas y verificables.
+Entregar el prototipo visual navegable del Reto 21 de Piura Innova bajo /demo, según las tasks aprobadas.
 
 # Done
 
-Spec y plan previos conservados: respuesta A, 25 FR/10 SC, datos compartidos y offline visual.
-Checklist previo: 29 cubiertos, 1 parcial y 2 brechas sobre 32; marcas del revisor intactas.
-tasks.md generado: 25 tareas pendientes, US1=4/US2=2/US3=2/US4=4.
-Siete pasos de construcción en orden, precedidos por T001 de aclaración documental.
+T001–T025 completas y verificadas, con un commit por tarea. Las cinco rutas públicas incluyen mapa de Piura, asignaciones, despachos y vistas previas de manifiesto/acta. Fixtures únicos, prioridades fijas, reservas/recepciones temporales compartidas y cola offline sólo visual. Recargar reinicia los cambios. Sin API, persistencia, autenticación DEMO, Valhalla, sincronización ni documentos finales.
+
+El usuario autorizó continuar con el checklist visual sin marcar y los criterios de 360/1280 px, contraste 4,5:1/3:1 y anuncios accesibles. El checklist sigue reservado al revisor.
 
 # Now
 
-Tasks generadas, sin implementar. T001 conserva CHK025/027/028 y gate del checklist.
-No se interpretó la petición de tasks como aprobación de requisitos o de implementación.
+Implementación terminada; disponible para revisión visual del usuario en http://localhost:3000/demo. HEAD indicado corresponde al código y evidencia de T024; T025 sólo registra este cierre y las casillas de tareas.
 
 # Evidence
 
-setup-tasks.ps1 -Json resolvió feature/template; spec/plan/modelo/contrato contrastados.
-Dependencias, criterios de cierre y trazabilidad definidos para 25 FR y 10 SC.
-CHK025: tamaños móviles en guía QA no delimitan explícitamente aceptación.
-CHK027/028: faltan contraste medible y comunicación no visual de cambios de estado.
-No existen .specify/extensions.yml ni hooks que ejecutar.
-Sin build ni pruebas de interfaz: sólo documentación.
+- 11 pruebas Vitest en 4 archivos aprobadas; tipos, Biome focalizado (29 archivos) y build aprobados.
+- Navegación de las cinco vistas a 360/1280 px, filtros, reserva parcial, recepción única, documentos coherentes, referencias inválidas, teclado/foco, cola visual, reinicio y acceso público comprobados.
+- Cartografía/worker cargaron; recuperación WebGL y fallo parcial comprobados con mocks.
+- /login conserva 200; /, /demo-extra y /demostracion conservan redirección a login.
+- Evidencia y comandos: .context/specs/001-demo-reto21/quickstart.md. Capturas en evidence/ del mismo directorio.
+- Visual revisado en oscuro; contraste calculado en claro/oscuro. Sin lector de pantalla real, recorrido visual completo en claro ni corte real de red.
 
-# Relevant Paths
+# Boundaries
 
-.context/specs/001-demo-reto21/spec.md
-.context/specs/001-demo-reto21/plan.md
-.context/specs/001-demo-reto21/tasks.md
-.context/specs/001-demo-reto21/data-model.md
-.context/specs/001-demo-reto21/contracts/demo-ui.md
-.context/specs/001-demo-reto21/checklists/requirements.md
-.context/specs/001-demo-reto21/checklists/prototipo-visual.md
-.specify/feature.json (local, ignorado por Git)
-src/lib/config/routes.config.ts: acceso autenticado por defecto; sólo /login público.
-
-# Durable References
-
-La Constitution exige coherencia de inventario y distinguir reservado/despachado/recibido.
-MapLibre 6.13.0 instalado; OpenFreeMap/worker requieren comprobación posterior.
-Rutas ilustrativas, documentos HTML sin archivos finales, sin API/DB/Valhalla/offline real.
-
-# Open Questions
-
-Precisar CHK025 y completar CHK027/028; no se inventan umbrales ni se cambia spec.
-Cambios previos ajenos: package.json, pnpm-lock.yaml,
-src/ui/UI_COMPONENTES.md y src/ui/UI_COMPONENTS_AGENTS.md; no se modifican.
+Sólo cambió código de /demo, su módulo, la regla pública y su test, y artefactos de la feature. Sin cambios protegidos ni dependencias instaladas. Se preservaron cambios ajenos en package.json, pnpm-lock.yaml, docs/ y los dos documentos UI no rastreados. Staging revisado por tarea.
 
 # Next
 
-Resolver T001 con decisiones explícitas y revisión de checklist; después seguir tareas
-en orden cuando se solicite implementación. No implementar en esta fase.
+Revisión visual del usuario. Cualquier implementación operativa requiere otro alcance confirmado; esta entrega permanece DEMO.
