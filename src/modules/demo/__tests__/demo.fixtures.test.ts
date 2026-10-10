@@ -1,5 +1,23 @@
 import { describe, expect, it } from "vitest";
 import { demoScenario as s } from "../data/demo.fixtures";
+import { documentFor } from "../data/demo.selectors";
+
+it("proyecta documentos de la misma carga antes y después de recibir", () => {
+  const before = documentFor("DES-DEMO-002");
+  const after = documentFor("DES-DEMO-002", {
+    reservedProposals: {},
+    receivedDispatchIds: ["DES-DEMO-002"],
+    connectionMode: "online",
+  });
+  expect(before?.status).toBe("en_transito");
+  expect(after?.status).toBe("recibido");
+  expect({ ...after, status: before?.status }).toEqual(before);
+  expect(before?.lines.map(({ itemId, quantity }) => ({ itemId, quantity }))).toEqual(
+    s.dispatches.find((d) => d.id === before?.id)?.lines,
+  );
+  expect(documentFor("invalid")).toBeUndefined();
+});
+
 import { geojsonFor } from "../data/demo.geojson";
 
 it("proyecta GeoJSON válido, filtrado y referido a fixtures", () => {

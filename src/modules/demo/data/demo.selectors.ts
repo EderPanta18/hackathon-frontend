@@ -72,6 +72,29 @@ export function proposalFor(id: string, state: DemoState = initialDemoState) {
     }),
   };
 }
+export function documentFor(id: string, state: DemoState = initialDemoState) {
+  const d = s.dispatches.find((x) => x.id === id);
+  if (!d) return undefined;
+  const origin = s.warehouses.find((x) => x.id === d.warehouseId);
+  const destination = s.shelters.find((x) => x.id === d.shelterId);
+  const vehicle = s.vehicles.find((x) => x.id === d.vehicleId);
+  if (!origin || !destination || !vehicle) return undefined;
+  return {
+    id: d.id,
+    origin: origin.name,
+    destination: destination.name,
+    vehicle: `${vehicle.label} · ${vehicle.demoRegistration}`,
+    status: dispatchStatus(d, state),
+    referenceDate: s.referenceDate,
+    lines: d.lines.map((l) => ({
+      ...l,
+      label: s.items.find((i) => i.id === l.itemId)?.label ?? "",
+      unit: s.items.find((i) => i.id === l.itemId)?.unit ?? "",
+    })),
+  };
+}
+export type DemoDocumentData = NonNullable<ReturnType<typeof documentFor>>;
+
 export function sheltersFor(territory = "", priority = "") {
   return s.shelters.filter(
     (x) => (!territory || x.territoryId === territory) && (!priority || x.priority === priority),
