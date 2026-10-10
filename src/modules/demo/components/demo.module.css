@@ -133,6 +133,52 @@
   color: var(--foreground);
   max-width: min(580px, calc(100vw - 32px));
 }
+.map {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--demo-line);
+  border-radius: 12px;
+  min-height: 390px;
+  background: var(--muted);
+}
+.mapCanvas {
+  height: 100%;
+  min-height: 390px;
+  width: 100%;
+}
+.mapNotice {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 70px;
+  padding: 12px;
+  background: var(--card);
+  color: var(--foreground);
+  border: 1px solid var(--demo-line);
+  border-radius: 8px;
+  font-size: 13px;
+  z-index: 2;
+}
+.mapCaption {
+  position: absolute;
+  left: 12px;
+  bottom: 38px;
+  padding: 6px 10px;
+  background: var(--card);
+  color: var(--foreground);
+  border: 1px solid var(--demo-line);
+  border-radius: 5px;
+  font-size: 12px;
+  pointer-events: none;
+}
+.map [class~="maplibregl-ctrl-group"] button {
+  width: 44px;
+  height: 44px;
+}
+.map [class~="maplibregl-ctrl-attrib"] {
+  color: #111;
+  background: #fff;
+}
 @media (max-width: 900px) {
   .frame {
     grid-template-columns: minmax(0, 1fr);

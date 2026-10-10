@@ -21,7 +21,7 @@ export function geojsonFor(territory = "", priority = "", dispatchId?: string) {
   const shelters = d
     ? s.shelters.filter((x) => x.id === d.shelterId)
     : sheltersFor(territory, priority);
-  const points = shelters.map((x) => ({
+  const points: Feature<Point>[] = shelters.map((x) => ({
     type: "Feature" as const,
     id: x.id,
     geometry: x.geometry,
