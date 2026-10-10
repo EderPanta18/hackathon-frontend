@@ -1,0 +1,28 @@
+# Ignora únicamente estado local, regenerable o específico de la máquina
+# generado por Serena.
+#
+# La configuración compartida del proyecto debe permanecer versionada.
+
+# -----------------------------------------------------------------------------
+# Generated cache
+# -----------------------------------------------------------------------------
+
+# Índices, metadatos y otros artefactos regenerables producidos por Serena.
+cache/
+
+
+# -----------------------------------------------------------------------------
+# Local logs
+# -----------------------------------------------------------------------------
+
+# Logs de ejecución y diagnóstico generados localmente.
+logs/
+
+
+# -----------------------------------------------------------------------------
+# Machine-local project configuration
+# -----------------------------------------------------------------------------
+
+# Overrides locales del proyecto.
+# No deben compartirse entre máquinas.
+project.local.yml
