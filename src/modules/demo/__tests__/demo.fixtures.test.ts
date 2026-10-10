@@ -1,5 +1,38 @@
 import { describe, expect, it } from "vitest";
 import { demoScenario as s } from "../data/demo.fixtures";
+import {
+  indicatorsFor,
+  initialDemoState,
+  inventoryFor,
+  needFor,
+  proposalFor,
+} from "../data/demo.selectors";
+
+it("deriva stock, faltantes y filtros sin mezclar unidades", () => {
+  expect(inventoryFor("alm-01", "agua")).toEqual({
+    onHand: 120,
+    reservedBaseline: 20,
+    reservedNew: 0,
+    available: 100,
+  });
+  expect(proposalFor("prop-01")?.lines.map((x) => x.quantity)).toEqual([60, 30, 0]);
+  expect(indicatorsFor("norte")).toMatchObject({ shelters: 2, population: 210, highPriority: 2 });
+  expect(indicatorsFor("reserva")).toEqual({
+    shelters: 0,
+    population: 0,
+    highPriority: 0,
+    uncoveredNeeds: 0,
+  });
+  const received = { ...initialDemoState, receivedDispatchIds: ["DES-DEMO-002"] };
+  expect(needFor("alb-02", "agua", received)).toMatchObject({
+    received: 30,
+    committed: 0,
+    uncovered: 90,
+    pendingReceipt: 90,
+  });
+  expect(inventoryFor("alm-01", "agua", received)).toEqual(inventoryFor("alm-01", "agua"));
+  expect(proposalFor("missing")).toBeUndefined();
+});
 
 describe("escenario DEMO", () => {
   it("mantiene identificadores, referencias y claves únicas", () => {
