@@ -61,6 +61,24 @@ export function DemoDocument({
           {reference && !invalid ? "Despacho referido" : "Ejemplo inicial identificado"}: {selected}
         </p>
       </div>
+      <nav aria-label="Vistas previas del despacho" className="demo-row">
+        <Button asChild variant={type === "manifiesto" ? "solid" : "outline"}>
+          <Link
+            href={`/demo/documentos/manifiesto?despacho=${encodeURIComponent(selected)}`}
+            aria-current={type === "manifiesto" ? "page" : undefined}
+          >
+            Manifiesto Excel
+          </Link>
+        </Button>
+        <Button asChild variant={type === "acta" ? "solid" : "outline"}>
+          <Link
+            href={`/demo/documentos/acta?despacho=${encodeURIComponent(selected)}`}
+            aria-current={type === "acta" ? "page" : undefined}
+          >
+            Acta PDF
+          </Link>
+        </Button>
+      </nav>
       <DocumentPreview type={type} data={data} />
     </div>
   );

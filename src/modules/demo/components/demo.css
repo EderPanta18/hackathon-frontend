@@ -70,6 +70,35 @@
   color: var(--muted-foreground);
   margin-top: 16px;
 }
+.demo-nav {
+  display: grid;
+  gap: 8px;
+  margin-top: 20px;
+}
+.demo-nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 550;
+  color: var(--foreground);
+}
+.demo-nav a:hover {
+  background: var(--muted);
+}
+.demo-nav a[aria-current="page"] {
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+@media (max-width: 900px) {
+  .demo-nav {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+}
 .demo-main {
   padding: 28px;
 }

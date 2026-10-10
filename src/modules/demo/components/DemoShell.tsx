@@ -1,12 +1,15 @@
 "use client";
 import "./demo.css";
 
-import { MapPinned } from "lucide-react";
+import { Boxes, LayoutDashboard, MapPinned, Truck } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { DemoProvider, useDemo } from "../state/DemoProvider";
 
 function Shell({ children }: { children: ReactNode }) {
   const { feedback } = useDemo();
+  const pathname = usePathname();
   return (
     <div className={"demo-root"}>
       <a href="#demo-main" className={"demo-skip"}>
@@ -26,6 +29,27 @@ function Shell({ children }: { children: ReactNode }) {
       <div className={"demo-frame"}>
         <aside className={"demo-rail"}>
           <strong>Explorar el escenario</strong>
+          <nav aria-label="Navegación DEMO" className="demo-nav">
+            {[
+              { href: "/demo", label: "Mapa de albergues", Icon: LayoutDashboard },
+              { href: "/demo/asignaciones", label: "Asignaciones", Icon: Boxes },
+              { href: "/demo/despachos", label: "Despachos", Icon: Truck },
+            ].map(({ href, label, Icon }) => (
+              <Link
+                key={href}
+                href={href}
+                aria-current={
+                  pathname === href ||
+                  (href === "/demo/despachos" && pathname.startsWith("/demo/documentos/"))
+                    ? "page"
+                    : undefined
+                }
+              >
+                <Icon aria-hidden="true" size={18} />
+                {label}
+              </Link>
+            ))}
+          </nav>
           <p>Albergues, necesidades y recorrido de la ayuda en un único escenario ficticio.</p>
           <p>
             Piura · Perú

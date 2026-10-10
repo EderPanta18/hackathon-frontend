@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { useId, useState } from "react";
 import { Card } from "@/ui/display/card";
 import { Table } from "@/ui/display/table";
@@ -120,6 +121,26 @@ export function DispatchDetail({
               ? "No se puede recibir: el ejemplo todavía está preparado y no ha salido. La demo no permite despacharlo."
               : "Este ejemplo ya figura recibido DEMO. No se puede duplicar la recepción."}
         </p>
+        <div className="demo-stack">
+          <h3 className="demo-subheading">Documentos del despacho</h3>
+          <p className="demo-muted">
+            Exportación DEMO: abre una vista previa; no genera archivos finales.
+          </p>
+          <div className="demo-row">
+            <Button asChild variant="outline" tone="neutral">
+              <Link
+                href={`/demo/documentos/manifiesto?despacho=${encodeURIComponent(dispatch.id)}`}
+              >
+                Ver manifiesto Excel
+              </Link>
+            </Button>
+            <Button asChild variant="outline" tone="neutral">
+              <Link href={`/demo/documentos/acta?despacho=${encodeURIComponent(dispatch.id)}`}>
+                Ver acta PDF
+              </Link>
+            </Button>
+          </div>
+        </div>
         <Dialog open={open} onOpenChange={setOpen}>
           <Dialog.Trigger asChild>
             <Button disabled={!canReceive} aria-describedby={reasonId}>

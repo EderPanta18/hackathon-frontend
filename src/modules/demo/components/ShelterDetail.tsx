@@ -1,6 +1,8 @@
+import Link from "next/link";
 import { Card } from "@/ui/display/card";
 import { Table } from "@/ui/display/table";
 import { Badge } from "@/ui/primitives/badge";
+import { Button } from "@/ui/primitives/button";
 import type { Shelter } from "../data/demo.types";
 
 export type ShelterDetailProps = {
@@ -89,6 +91,13 @@ export function ShelterDetail({
           {sourceLabel} · {referenceDate}
         </p>
       </Card.Content>
+      <Card.Footer>
+        <Button asChild className="w-full">
+          <Link href={`/demo/asignaciones?albergue=${encodeURIComponent(shelter.id)}`}>
+            Explorar asignación DEMO
+          </Link>
+        </Button>
+      </Card.Footer>
     </Card>
   );
 }
