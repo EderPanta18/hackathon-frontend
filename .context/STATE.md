@@ -1,39 +1,35 @@
 ---
 schema: agent-state/v1
-session: 0
 updated: 2026-10-10
 branch: eder
-head: b15b14d
-status: idle
+base_head: 188f96c
+status: specified
 ---
 
 # Intent
 
-Entregar el prototipo visual navegable del Reto 21 de Piura Innova bajo /demo, según las tasks aprobadas.
+01_COMUNA: especificar seis páginas del Jefe de Comuna e infraestructura demo compartida mínima persistente. Esta fase no implementa código.
 
 # Done
 
-T001–T025 completas y verificadas, con un commit por tarea. Las cinco rutas públicas incluyen mapa de Piura, asignaciones, despachos y vistas previas de manifiesto/acta. Fixtures únicos, prioridades fijas, reservas/recepciones temporales compartidas y cola offline sólo visual. Recargar reinicia los cambios. Sin API, persistencia, autenticación DEMO, Valhalla, sincronización ni documentos finales.
+Creada .context/specs/002-comuna-ayuda/spec.md con cinco historias, treinta requisitos, diez criterios y checklist de calidad documental. audit.md registra fuentes, precedencia, restricciones y auditoría estática de acceso/shell.
 
-El usuario autorizó continuar con el checklist visual sin marcar y los criterios de 360/1280 px, contraste 4,5:1/3:1 y anuncios accesibles. El checklist sigue reservado al revisor.
+001-demo-reto21 es el prototipo visual /demo; su evidencia queda en su quickstart y no acredita comportamiento operativo COM.
 
 # Now
 
-Implementación terminada; disponible para revisión visual del usuario en http://localhost:3000/demo. HEAD indicado corresponde al código y evidencia de T024; T025 sólo registra este cierre y las casillas de tareas.
+Especificación COM lista para planificación con ruta explícita .context/specs/002-comuna-ayuda. .specify/feature.json conserva la demo anterior por prohibición de editar tooling/HUMAN_MANAGED. Usar SPECIFY_FEATURE_DIRECTORY con esa ruta y SPECIFY_FEATURE_NO_PERSIST=1, opciones existentes en common.ps1.
 
 # Evidence
 
-- 11 pruebas Vitest en 4 archivos aprobadas; tipos, Biome focalizado (29 archivos) y build aprobados.
-- Navegación de las cinco vistas a 360/1280 px, filtros, reserva parcial, recepción única, documentos coherentes, referencias inválidas, teclado/foco, cola visual, reinicio y acceso público comprobados.
-- Cartografía/worker cargaron; recuperación WebGL y fallo parcial comprobados con mocks.
-- /login conserva 200; /, /demo-extra y /demostracion conservan redirección a login.
-- Evidencia y comandos: .context/specs/001-demo-reto21/quickstart.md. Capturas en evidence/ del mismo directorio.
-- Visual revisado en oscuro; contraste calculado en claro/oscuro. Sin lector de pantalla real, recorrido visual completo en claro ni corte real de red.
+Git inicial: eder, HEAD 188f96c, staging vacío, numerosos cambios ajenos. Plantilla resuelta por script existente; no extensions.yml ni hooks. Constitution y fuentes consultadas. Auditoría estática: login/cookie/shell existentes; homeByRole apunta a prefijos; acceso cruzado lleva a acceso-denegado; layout superior se llama layoui.tsx; no se hallaron páginas por rol. Véase audit.md.
+
+Checklist acredita solo calidad documental. No se ejecutaron build, UI 360 px, servidor, reinicio, exportaciones ni pruebas operativas en esta fase.
 
 # Boundaries
 
-Sólo cambió código de /demo, su módulo, la regla pública y su test, y artefactos de la feature. Sin cambios protegidos ni dependencias instaladas. Se preservaron cambios ajenos en package.json, pnpm-lock.yaml, docs/ y los dos documentos UI no rastreados. Staging revisado por tarea.
+Preservar cambios ajenos, login y cookie. No editar Constitution, skills, AGENTS ni tooling. SQLite en servicio demo aislado es restricción explícita para fase posterior. Sin matching real, prioridad inventada ni páginas de otros roles. Despacho/llegada fixture persistidos SIMULADO. XLSX enviado y PDF recibido/diferencias solo tras recepción propia finalizada; discrepancias no reactivan matching.
 
 # Next
 
-Revisión visual del usuario. Cualquier implementación operativa requiere otro alcance confirmado; esta entrega permanece DEMO.
+Ejecutar speckit-plan con contexto explícito sin persistir puntero. Reutilizar acceso/shell y corregir solo incompatibilidades verificadas de integración. Separar evidencia documental actual de aceptación operativa futura.
