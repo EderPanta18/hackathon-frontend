@@ -4,7 +4,11 @@ import "server-only";
 export { getBackendApiUrl } from "./backend.server";
 
 // Seguridad
-export { getAccessTokenVerificationSource } from "./security.server";
+export {
+    getAccessTokenVerificationSource,
+    getDevAuthVerificationSource,
+    DEV_AUTH_ISSUER,
+} from "./security.server";
 
 // JWT
 export { verifyAccessJwt } from "./jwt.server";

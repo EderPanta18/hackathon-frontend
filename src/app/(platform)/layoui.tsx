@@ -1,23 +1,26 @@
+// src/app/(platform)/layout.tsx
+
 import type { ReactNode } from "react";
 import { redirect } from "next/navigation";
 import { ROUTE_ACCESS_CONFIG } from "@/lib/config";
 import { getServerSession } from "@/lib/server";
 
-type ProtectedLayoutProps = {
-    children: ReactNode;
-};
+type PlatformLayoutProps = { children: ReactNode };
 
-/** Segunda barrera de acceso en servidor; proxy.ts solo hace el filtro previo. */
-export default async function ProtectedLayout({
+/**
+ * Segunda barrera de autenticación en servidor.
+ * La restricción por rol vive exclusivamente en `src/middleware/*`.
+ * El shell visual se monta en `(workspace)/layout.tsx`.
+ */
+export default async function PlatformLayout({
     children,
-}: ProtectedLayoutProps) {
+}: PlatformLayoutProps) {
     const session = await getServerSession();
 
     if (!session) {
         const signInPath = ROUTE_ACCESS_CONFIG.signInPath;
 
         if (!signInPath)
-            // Fallar cerrado: no se ha configurado aun una ruta publica de login.
             throw new Error(
                 "Configura ROUTE_ACCESS_CONFIG.signInPath antes de habilitar rutas protegidas",
             );

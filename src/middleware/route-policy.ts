@@ -1,3 +1,5 @@
+// src/middleware/route-policy.ts
+
 import {
     APP_ROUTE_ACCESS_RULES,
     ROUTE_ACCESS_CONFIG,
@@ -20,8 +22,9 @@ function matchesRoute(pathname: string, rule: AppRouteAccessRule): boolean {
 }
 
 /** Regla más específica; a igualdad de longitud, prevalece la exacta. */
-export function resolveRouteAccess(pathname: string): RouteAccess {
+export function resolveRouteRule(pathname: string): AppRouteAccessRule | null {
     const path = normalizePath(pathname);
+
     let best: AppRouteAccessRule | undefined;
 
     for (const rule of APP_ROUTE_ACCESS_RULES) {
@@ -40,5 +43,12 @@ export function resolveRouteAccess(pathname: string): RouteAccess {
             best = rule;
     }
 
-    return best?.access ?? ROUTE_ACCESS_CONFIG.defaultAccess;
+    return best ?? null;
+}
+
+/** Compatibilidad con consumidores existentes que solo necesitan el tipo de acceso. */
+export function resolveRouteAccess(pathname: string): RouteAccess {
+    return (
+        resolveRouteRule(pathname)?.access ?? ROUTE_ACCESS_CONFIG.defaultAccess
+    );
 }

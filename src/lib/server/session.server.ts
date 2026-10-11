@@ -1,15 +1,19 @@
+// src/lib/server/session.server.ts
+//
 import "server-only";
 
 import type { JWTPayload } from "jose";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import type { NextRequest } from "next/server";
+import { Role } from "@/core/enums";
 import { SECURITY_CONFIG } from "../config";
 import { verifyAccessJwt } from "./jwt.server";
 
 export type Session = {
     subject: string;
-    claims: JWTPayload & { sub: string };
+    role: Role;
+    claims: JWTPayload & { sub: string; role: string };
 };
 
 export type SessionStatus =
@@ -22,6 +26,13 @@ export type SessionState =
           session: null;
       };
 
+function isRole(value: unknown): value is Role {
+    return (
+        typeof value === "string" &&
+        (Object.values(Role) as string[]).includes(value)
+    );
+}
+
 async function resolveAccessToken(
     token: string | null | undefined,
 ): Promise<SessionState> {
@@ -31,16 +42,22 @@ async function resolveAccessToken(
 
     if (!result.ok) return { status: result.reason, session: null };
 
-    const { sub } = result.payload;
+    const { sub, role } = result.payload;
 
     if (typeof sub !== "string" || !sub.trim())
         return { status: "invalid", session: null };
+
+    if (!isRole(role)) return { status: "invalid", session: null };
 
     return {
         status: "authenticated",
         session: {
             subject: sub,
-            claims: result.payload as JWTPayload & { sub: string },
+            role,
+            claims: result.payload as JWTPayload & {
+                sub: string;
+                role: string;
+            },
         },
     };
 }

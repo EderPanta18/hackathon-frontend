@@ -1,26 +1,17 @@
-"use client";
+// src/app/(public)/login/page.tsx
 
-import { useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
-import { LoginCard } from "@/modules/auth/features";
-
-const AFTER_LOGIN_PATH = "/dashboard";
+import { isDevAuthEnabled } from "@/modules/dev-auth";
+import { DevRoleSwitcher } from "@/modules/dev-auth/components/dev-role-switcher";
+import { LoginClientShell } from "./LoginClientShell";
 
 export default function LoginPage() {
-    const router = useRouter();
-    const queryClient = useQueryClient();
-
-    const handleSuccess = () => {
-        queryClient.clear();
-
-        router.replace(AFTER_LOGIN_PATH);
-        router.refresh();
-    };
+    const devAuthEnabled = isDevAuthEnabled();
 
     return (
         <main className="flex min-h-dvh items-center justify-center px-4 py-8">
             <div className="w-full max-w-md">
-                <LoginCard onSuccessAction={handleSuccess} />
+                <LoginClientShell />
+                {devAuthEnabled && <DevRoleSwitcher />}
             </div>
         </main>
     );
