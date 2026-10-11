@@ -10,6 +10,12 @@
 
 **Feature directory**: `.context/specs/002-comuna-ayuda`. La feature registrada anteriormente, `001-demo-reto21`, es un prototipo visual distinto. Evidencia de auditoría y restricciones técnicas expresas: [audit.md](audit.md).
 
+## Clarifications
+
+### Session 2026-10-11
+
+- Q: ¿Qué contrato debe aceptar demo-api para verificar la identidad que el BFF reenvía en la cookie actual? → A: Opción A, elegida por el usuario: verificar el JWT demo firmado que ya emite el login. La API verifica la credencial y obtiene de ella la identidad; nunca autoriza usando un rol libre enviado por el navegador. El vínculo 1:1 y los permisos se validan contra datos persistidos.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Presentar una necesidad de mi comuna (Priority: P1)
@@ -139,7 +145,7 @@ El estado de solicitud se deriva de hechos persistidos, no es un selector editab
 - **FR-001**: La UI nueva DEBE limitarse a `/comuna/dashboard`, `/comuna/solicitudes`, `/comuna/solicitudes/nueva`, `/comuna/solicitudes/[solicitudId]`, `/comuna/recepciones`, `/comuna/recepciones/[despachoId]`. Revisión, conciliación y descargas son secciones/acciones de esas páginas, sin páginas adicionales.
 - **FR-002**: El sistema DEBE reutilizar login, sesión demo, shell, sidebar y controles web existentes. Solo admite ajustes mínimos de integración por incompatibilidad verificada; no reconstruir autenticación ni crear otra sesión. Conservar acceso de los cuatro roles, redirects por prefijo y al dashboard propio ante acceso cruzado.
 - **FR-003**: El servidor DEBE obtener identidad de acceso verificado y exigir COM con relación jefe-comuna 1:1 válida para operar. Ningún selector/dato del cliente concede pertenencia.
-- **FR-004**: Cada lectura, escritura y descarga DEBE validar rol, entidad, recurso y estado. Sin sesión válida: 401; sin permiso: 403; sin cambios ni datos ajenos. Redirects web no sustituyen autorización del servicio.
+- **FR-004**: Cada lectura, escritura y descarga DEBE validar rol, entidad, recurso y estado. La demo-api verifica el JWT demo existente y vincula su identidad verificada con los datos persistidos; no confía en roles/identidades libres de cabeceras o cuerpos del cliente. Sin sesión válida: 401; sin permiso: 403; sin cambios ni datos ajenos. Redirects web no sustituyen autorización del servicio.
 - **FR-005**: El dashboard DEBE resumir solo comuna propia, solicitudes y recepciones, enlazando bandejas y alta. No sumar productos/unidades incompatibles como un total de ayuda.
 - **FR-006**: La bandeja DEBE abrir cada solicitud propia con identificador, fecha y estado textual; ofrecer carga, vacío y error recuperable.
 - **FR-007**: La solicitud DEBE tener de uno a cinco insumos únicos de catálogo persistido, unidad fija y cantidad positiva según divisibilidad; población entera positiva en personas, situación y justificación de urgencia obligatorias.
