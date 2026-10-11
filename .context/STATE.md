@@ -14,11 +14,13 @@ status: planned
 
 Spec COM: cinco historias, treinta requisitos, diez criterios y checklist documental 16/16. Opción A aceptada: demo-api verifica JWT actual y resuelve identidad/entidad en SQLite. Plan, research, data-model, tres contratos y quickstart diseñan servicio separado, autenticación servidor-servidor, transacciones, auditoría, idempotencia, semilla y exportaciones.
 
+Checklist especializada de calidad COM creada con 22 criterios trazables, todos sin marcar para evaluación humana. Incluye rutas/redirects, auth, estados, permisos, conciliación, fixtures, archivos, 360 px, persistencia y frontera futura.
+
 001-demo-reto21 es el prototipo visual /demo; su evidencia queda en su quickstart y no acredita comportamiento operativo COM.
 
 # Now
 
-Diseño listo para speckit-tasks en .context/specs/002-comuna-ayuda. .specify/feature.json conserva la demo anterior por prohibición de editar HUMAN_MANAGED. Usar SPECIFY_FEATURE_DIRECTORY=.context/specs/002-comuna-ayuda y SPECIFY_FEATURE_NO_PERSIST=1, opciones existentes. No se creó tasks.md.
+Revisar/completar `.context/specs/002-comuna-ayuda/checklists/comuna.md` antes de speckit-tasks; los marcadores requieren decisión humana. .specify/feature.json conserva la demo anterior por prohibición de editar HUMAN_MANAGED. Para Spec Kit usar SPECIFY_FEATURE_DIRECTORY=.context/specs/002-comuna-ayuda y SPECIFY_FEATURE_NO_PERSIST=1. No se creó tasks.md.
 
 # Evidence
 
