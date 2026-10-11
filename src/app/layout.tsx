@@ -4,6 +4,7 @@ import { cn } from "@/lib/styling";
 import { AppProviders } from "@/providers";
 
 import "./globals.css";
+import ThemeProvider from "@/providers/ThemeProvider";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -34,7 +35,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             )}
         >
             <body className="flex min-h-dvh flex-col font-sans">
-                <AppProviders>{children}</AppProviders>
+                <ThemeProvider>
+                    <AppProviders>{children}</AppProviders>
+                </ThemeProvider>
             </body>
         </html>
     );

@@ -12,11 +12,9 @@ interface AppProvidersProps {
 /** Infraestructura compartida de React; no valida sesiones ni autoriza rutas. */
 export function AppProviders({ children }: AppProvidersProps) {
     return (
-        <ThemeProvider>
-            <QueryProvider>
-                {children}
-                <Toaster position="top-right" />
-            </QueryProvider>
-        </ThemeProvider>
+        <QueryProvider>
+            {children}
+            <Toaster position="top-right" />
+        </QueryProvider>
     );
 }

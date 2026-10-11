@@ -181,6 +181,9 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.104.1
         version: 5.104.1(react@19.3.0)
+      '@wrksz/themes':
+        specifier: ^2.0.3
+        version: 2.0.3(next@16.4.0(@babel/core@7.29.7)(@types/node@20.19.43)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@5.9.3)
       axios:
         specifier: ^1.20.0
         version: 1.20.0(debug@4.4.3)
@@ -2060,6 +2063,17 @@ packages:
 
   '@vitest/spy@5.0.3':
     resolution: {integrity: sha512-XhFysQTB8AZ+P4gMi+Lpo99vg2AZi0qKpaB9yXQl37+CaMEAPO3iH/wGVnSyL5MPERiLezpqTVtrR6UZH5GCXg==}
+
+  '@wrksz/themes@2.0.3':
+    resolution: {integrity: sha512-9oOaicXlp2s1OrX6LP0xTO/uTikHwpTa7/12qJptEqGAQOmdngSzgEe/rlJMPgne6RFxgURjODLCLT8wnLOHBQ==}
+    peerDependencies:
+      next: '>=16.0.0'
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
+      typescript: '>=5.9'
+    peerDependenciesMeta:
+      next:
+        optional: true
 
   accepts@2.0.0:
     resolution: {integrity: sha512-5cvg6CtKwfgdmVqY1WIiXKc3Q1bkRqGLi+2W/6ao+6Y7gu/RCwRuAhGEzh5B4KlszSuTLgZYuqFqo5bImjNKng==}
@@ -5607,6 +5621,14 @@ snapshots:
       vite: 8.3.4(@types/node@20.19.43)(jiti@2.7.0)
 
   '@vitest/spy@5.0.3': {}
+
+  '@wrksz/themes@2.0.3(next@16.4.0(@babel/core@7.29.7)(@types/node@20.19.43)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@5.9.3)':
+    dependencies:
+      react: 19.3.0
+      react-dom: 19.3.0(react@19.3.0)
+      typescript: 5.9.3
+    optionalDependencies:
+      next: 16.4.0(@babel/core@7.29.7)(@types/node@20.19.43)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
 
   accepts@2.0.0:
     dependencies:

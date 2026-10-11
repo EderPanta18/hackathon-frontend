@@ -73,9 +73,9 @@ export const ROUTE_ACCESS_CONFIG = {
     signInPath: ROUTES.public.login,
     accessDeniedPath: ROUTES.shared.accessDenied,
     homeByRole: {
-        [Role.COMUNA]: ROUTES.comuna.root,
-        [Role.ONG]: ROUTES.ong.root,
-        [Role.BRIGADA]: ROUTES.brigada.root,
-        [Role.DEFENSA_CIVIL]: ROUTES.defensaCivil.root,
+        [Role.COMUNA]: `${ROUTES.comuna.root}`,
+        [Role.ONG]: `${ROUTES.ong.root}`,
+        [Role.BRIGADA]: `${ROUTES.brigada.root}`,
+        [Role.DEFENSA_CIVIL]: `${ROUTES.defensaCivil.root}`,
     },
 } as const;

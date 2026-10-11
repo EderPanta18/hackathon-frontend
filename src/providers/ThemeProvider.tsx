@@ -1,6 +1,4 @@
-"use client";
-
-import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { ThemeProvider as NextThemeProvider } from "@wrksz/themes/next";
 import type { ReactNode } from "react";
 
 type ThemeProviderProps = {
@@ -9,14 +7,14 @@ type ThemeProviderProps = {
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
     return (
-        <NextThemesProvider
+        <NextThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
         >
             {children}
-        </NextThemesProvider>
+        </NextThemeProvider>
     );
 }
 

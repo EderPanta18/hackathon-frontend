@@ -52,5 +52,3 @@ next-env.d.ts
 
 /.codex/config.toml
 /.opencode/opencode.json
-
-docs/

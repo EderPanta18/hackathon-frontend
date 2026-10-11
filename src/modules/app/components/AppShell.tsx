@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import type { Role } from "@/core/enums/user.enums";
 import { Sidebar, SidebarProvider } from "@/ui/navigation/sidebar";
 import { AppSidebar } from "./AppSidebar";
+import { TooltipProvider } from "@/ui/overlay/tooltip";
 
 type AppShellProps = {
     role: Role;
@@ -15,19 +16,21 @@ type AppShellProps = {
  */
 export function AppShell({ role, children }: AppShellProps) {
     return (
-        <SidebarProvider>
-            <AppSidebar role={role} />
-            <Sidebar.Inset>
-                <header className="flex h-12 items-center gap-2 border-b px-3">
-                    <Sidebar.Trigger />
-                    <span className="text-sm text-muted-foreground">
-                        Workspace
-                    </span>
-                </header>
-                <div className="flex min-h-0 flex-1 flex-col overflow-auto p-4">
-                    {children}
-                </div>
-            </Sidebar.Inset>
-        </SidebarProvider>
+        <TooltipProvider>
+            <SidebarProvider>
+                <AppSidebar role={role} />
+                <Sidebar.Inset>
+                    <header className="flex h-12 items-center gap-2 border-b px-3">
+                        <Sidebar.Trigger />
+                        <span className="text-sm text-muted-foreground">
+                            Workspace
+                        </span>
+                    </header>
+                    <div className="flex min-h-0 flex-1 flex-col overflow-auto p-4">
+                        {children}
+                    </div>
+                </Sidebar.Inset>
+            </SidebarProvider>
+        </TooltipProvider>
     );
 }

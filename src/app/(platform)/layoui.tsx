@@ -1,5 +1,7 @@
 // src/app/(platform)/layout.tsx
 
+export const instant = false;
+
 import type { ReactNode } from "react";
 import { redirect } from "next/navigation";
 import { ROUTE_ACCESS_CONFIG } from "@/lib/config";
