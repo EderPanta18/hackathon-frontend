@@ -16,15 +16,19 @@ Spec COM: cinco historias, treinta requisitos, diez criterios y checklist docume
 
 Checklist especializada de calidad COM creada con 22 criterios trazables, todos sin marcar para evaluación humana. Incluye rutas/redirects, auth, estados, permisos, conciliación, fixtures, archivos, 360 px, persistencia y frontera futura.
 
+`tasks.md` generado para las cinco historias: 28 tasks secuenciales con ruta dueña, entrada, salida, dependencia y check; tareas del servicio anteceden UI y regresión. Sin tasks de login/sidebar nuevos.
+
 001-demo-reto21 es el prototipo visual /demo; su evidencia queda en su quickstart y no acredita comportamiento operativo COM.
 
 # Now
 
-Revisar/completar `.context/specs/002-comuna-ayuda/checklists/comuna.md` antes de speckit-tasks; los marcadores requieren decisión humana. .specify/feature.json conserva la demo anterior por prohibición de editar HUMAN_MANAGED. Para Spec Kit usar SPECIFY_FEATURE_DIRECTORY=.context/specs/002-comuna-ayuda y SPECIFY_FEATURE_NO_PERSIST=1. No se creó tasks.md.
+Revisar manualmente los tasks antes de implementación; la auditoría inicial de sesión es T001. `.specify/feature.json` conserva la demo anterior por restricción HUMAN_MANAGED. Para Spec Kit usar SPECIFY_FEATURE_DIRECTORY=.context/specs/002-comuna-ayuda y SPECIFY_FEATURE_NO_PERSIST=1.
 
 # Evidence
 
-Git al iniciar plan: eder, HEAD 97b682e, staging vacío, numerosos cambios ajenos preservados. setup-plan con ruta explícita/NO_PERSIST; sin extensions.yml. Node v24.19.0, pnpm 12.11.2 y ayuda install comprobados. SQLite en memoria: 3.53.3, FK=1, backup disponible; no acredita persistencia. Paths DB/WAL/SHM/backups/.env.local ignorados; sin SQLite rastreado. Contratos y enlaces revisados, diff documental sin errores de espacio.
+Git al iniciar tasks: eder, HEAD db0b55d, cambios ajenos preservados. setup-tasks con ruta explícita/NO_PERSIST; sin extensions.yml. Archivo comprobado: 28 IDs secuenciales, cinco criterios de prueba independiente, 22 tareas de historias con etiquetas y campos dueño/entrada/salida/dependencia/check; sin placeholders. No se ejecutaron pruebas de implementación.
+
+Se usó la plantilla de Spec Kit. `git diff --check` documental pasó; validación de formato 28/28 y STATE 3277 bytes. No lint/build/tests ni comandos futuros de demo-api ejecutados.
 
 Checklist acredita solo calidad documental. No se ejecutaron lint/build, UI 360 px, HTTP de dominio, reinicio persistente o exportaciones. No se instalaron dependencias ni creó servicio/BD.
 
